@@ -14,6 +14,7 @@ class User extends Model
     
     protected $fillable = [
         'user_gmail',
+        'user_google_id',
         'user_gender',
         'user_phone',
         'created_at',
