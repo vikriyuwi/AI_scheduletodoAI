@@ -71,6 +71,25 @@
         var taskDeadline = $('#taskDeadline').val();
         var taskDifficulty = $('#taskDifficulty').val();
         var taskSteps = $('#taskSteps').val();
+        if (taskName === '') {
+            alert('Please enter a task name.');
+            return;
+        }
+
+        if (taskDeadline === '') {
+            alert('Please enter a task deadline.');
+            return;
+        }
+
+            if (taskDifficulty === '' || isNaN(taskDifficulty) || taskDifficulty < 1 || taskDifficulty > 10) {
+            alert('Please enter a valid task difficulty between 1 and 10.');
+            return;
+        }
+
+        if (taskSteps === '' || isNaN(taskSteps) || taskSteps < 1) {
+            alert('Please enter a valid number of task steps.');
+            return;
+        }
         $('#taskCard').hide();
         var newFormCard = $('#stepCard')
         var newForm = $('form').eq(1);
