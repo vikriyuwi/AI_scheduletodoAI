@@ -24,16 +24,19 @@
                     <form action="submit">
                         @csrf
                         <label for="taskName">Task Name:</label>
-                        <input type="text" id="taskName" name="taskName" required><br><br>
+                        <input type="text" id="taskName" name="taskName"><br><br>
 
                         <label for="taskDeadline">Task Deadline:</label>
-                        <input type="date" id="taskDeadline" name="taskDeadline" required><br><br>
+                        <input type="date" id="taskDeadline" name="taskDeadline"><br><br>
 
                         <label for="taskDifficulty">Task Difficulty:</label>
-                        <input type="number" id="taskDifficulty" name="taskDifficulty" min="1" max="10" required><br><br>
+                        <input type="number" id="taskDifficulty" name="taskDifficulty"><br><br>
 
                         <label for="taskSteps">Task Steps:</label>
-                        <input type="number" id="taskSteps" name="taskSteps" min="1" required><br><br>
+                        <input type="number" id="taskSteps" name="taskSteps"><br><br>
+
+                        <label for="taskLink">Related Link (optional):</label>
+                        <input type="text" id="taskLink" name="taskLink"><br><br>
 
                         <button type="submit" id="submit-button">Submit</button>
                     </form>
@@ -49,11 +52,8 @@
                         <input type="hidden" id="taskDeadline" name="taskDeadline">
                         <input type="hidden" id="taskDifficulty" name="taskDifficulty">
                         <input type="hidden" id="taskSteps" name="taskSteps">
+                        <input type="hidden" id="taskLink" name="taskLink">
 
-                        {{-- @for ($i = 1; $i <= $taskSteps; $i++)
-                        <label for="stepName{{ $i }}">Step {{ $i }}:</label>
-                        <input type="text" id="stepName{{ $i }}" name="stepName{{ $i }}" required><br><br>
-                        @endfor --}}
                     </form>
                 </div>
             </div>
@@ -73,6 +73,7 @@
         var taskDeadline = $('#taskDeadline').val();
         var taskDifficulty = $('#taskDifficulty').val();
         var taskSteps = $('#taskSteps').val();
+        var taskLink = $('#taskLink').val();
         if (taskName === '') {
             alert('Please enter a task name.');
             return;
@@ -100,6 +101,7 @@
         newForm.find('#taskDeadline').val(taskDeadline);
         newForm.find('#taskDifficulty').val(taskDifficulty);
         newForm.find('#taskSteps').val(taskSteps);
+        newForm.find('#taskLink').val(taskLink);
         for (var i = 1; i <= taskSteps; i++) {
             var stepName = $('<label>', {
             for: 'stepName' + i,
@@ -110,7 +112,15 @@
             name: 'stepName' + i,
             required: true
             }));
-            newForm.append(stepName).append('<br><br>');
+            newForm.append(stepName).append('<br>');
+            
+            var stepDesc = $('<textarea>', {
+            id: 'stepDesc' + i,
+            name: 'stepDesc' + i,
+            placeholder: 'Add description',
+            style: 'height: 100px'
+            });
+            newForm.append(stepDesc).append('<br><br>');
         }
         newForm.append($('<button type="submit">Submit</button>'))
         });
