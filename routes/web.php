@@ -33,5 +33,6 @@ Route::prefix('/')->group(function() {
 Route::prefix('/auth')->group(function() {
     Route::get('/', [AuthGoogle::class,'index']);
     Route::get('google', [AuthGoogle::class,'redirectToGoogle'])->name('login.google');
+    Route::get('google/callback',[AuthGoogle::class, 'googleCallBack']);
     Route::post('login', [AuthGoogle::class,'login']);
 });
