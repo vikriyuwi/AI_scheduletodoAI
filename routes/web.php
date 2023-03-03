@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserPagesController as UPC;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('tes');
+
+
+Route::prefix('/')->group(function() {
+    Route::get('/', function () {
+        return view('tes');
+    });
+    Route::get('/template', function () {
+        return view('template');
+    });
 });
