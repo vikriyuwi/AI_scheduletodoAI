@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserPagesController as UPC;
-use App\Http\Controllers\Auth;
+use App\Http\Controllers\AuthGoogle;
+use App\Http\Controllers\TaskManager;
 
 /*
 |--------------------------------------------------------------------------
