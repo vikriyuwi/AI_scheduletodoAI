@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('step', function (Blueprint $table) {
-            $table->increments('step_id');
+            $table->integer('step_id',true);
             $table->integer('todo_id');
             $table->foreign('todo_id')->references('todo_id')->on('todo')->onUpdate('CASCADE')->onDelete('CASCADE');
             $table->string('step_name',255);
