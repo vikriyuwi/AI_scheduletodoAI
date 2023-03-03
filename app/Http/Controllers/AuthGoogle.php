@@ -22,12 +22,12 @@ class AuthGoogle extends Controller
 
         $user = User::updateOrCreate([
             'user_google_id' => $googleUser->id,
-            'password' => bcrypt('12345678'),
         ], [
             'user_name' => $googleUser->name,
             'user_gmail' => $googleUser->email,
             'user_picture' => $googleUser->avatar,
             'user_token' => $googleUser->token,
+            'password' => bcrypt('12345678'),
         ]);
 
         Auth::login($user);
