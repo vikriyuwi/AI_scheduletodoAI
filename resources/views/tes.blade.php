@@ -41,7 +41,9 @@
             </div>
             <div class="card" id="stepCard" style="display: none">
                 <div class="card-body">
-                    <form action="submit">
+                    
+                    <form action="{{ url('/task/add') }}" method="POST">
+                        @method('POST')
                         @csrf
                         <input type="hidden" id="taskName" name="taskName">
                         <input type="hidden" id="taskDeadline" name="taskDeadline">
