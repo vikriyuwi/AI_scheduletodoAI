@@ -19,9 +19,8 @@ use App\Http\Controllers\TaskManager;
 
 
 Route::prefix('/')->group(function() {
-    Route::get('/', function () {
-        return view('tes');
-    });
+    Route::get('/',[UPC::class,'index'])->name('home');
+    Route::get('/tes', [UPC::class,'tes']);
     Route::prefix('/template')->group(function() {
         Route::get('/', [UPC::class,'template']);
     });
@@ -31,8 +30,9 @@ Route::prefix('/')->group(function() {
 });
 
 Route::prefix('/auth')->group(function() {
-    Route::get('/', [AuthGoogle::class,'index']);
+    Route::get('/', [AuthGoogle::class,'index'])->name('login');
     Route::get('google', [AuthGoogle::class,'redirectToGoogle'])->name('login.google');
+    Route::get('logout', [AuthGoogle::class,'logout'])->name('logout');
     Route::get('google/callback',[AuthGoogle::class, 'googleCallBack']);
     Route::post('login', [AuthGoogle::class,'login']);
 });

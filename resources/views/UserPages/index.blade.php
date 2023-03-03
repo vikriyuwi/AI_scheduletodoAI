@@ -37,7 +37,11 @@
                 <h2>Profile</h2>
                 <div class="row">
                     <div class="col-12 text-center">
-                        <b>You name</b>
+                        <img src="{{ $userData->user_picture }}" class="rounded-circle" alt="{{ $userData->user_name }}"><br><br>
+                        <b>{{ $userData->user_name }}</b><br>
+                        <span>
+                            {{ $userData->user_gmail }}
+                        </span>
                     </div>
                 </div>
             </div>
