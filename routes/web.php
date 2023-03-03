@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserPagesController as UPC;
 use App\Http\Controllers\Auth;
+use App\Http\Controllers\TaskManager;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,9 @@ Route::prefix('/')->group(function() {
     });
     Route::prefix('/template')->group(function() {
         Route::get('/', [UPC::class,'template']);
+    });
+    Route::prefix('/task')->group(function() {
+        Route::resource('/', TaskManager::class);
     });
 });
 

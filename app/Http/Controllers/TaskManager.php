@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Todo;
+use App\Models\Step;
 
 class TaskManager extends Controller
 {
@@ -27,7 +29,26 @@ class TaskManager extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $dataTodo = [
+            'todo_name' => $request->taskName,
+            'user_id' => Session::get('user_id'),
+            'todo_difficulty_level' => $request->taskDifficulty,
+            'todo_link' => $request->taskLink,
+            'todo_deadline' => $request->taskDeadline,
+        ];
+        $currentTodo = Todo::insert($dataTodo);
+        $taskStep = $request->taskStep;
+
+        for ($i = 0; $i < $taskStep; $i++) {
+            $dataStep = [
+                'step_name' => $request->input('taskStep'.$i),
+                'todo_id' => $currentTodo->todo_id,
+                'step_detail' => $request->input('taskDesc'.$i),
+                'step_isdone' => 0
+            ];
+            Step::insert($dataStep);
+        }        
+        return redirect('/');
     }
 
     /**
