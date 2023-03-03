@@ -13,7 +13,7 @@ class User extends Model
     protected $primaryKey = 'user_id';
     
     protected $fillable = [
-        'user_gemail',
+        'user_gmail',
         'user_gender',
         'user_phone',
         'created_at',
