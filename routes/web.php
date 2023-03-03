@@ -20,7 +20,5 @@ Route::prefix('/')->group(function() {
     Route::get('/', function () {
         return view('tes');
     });
-    Route::get('/template', function () {
-        return view('template');
-    });
+    Route::get('/template', [UPC::class,'template']);
 });
