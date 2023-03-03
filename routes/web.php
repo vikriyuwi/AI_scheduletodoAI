@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserPagesController as UPC;
-use App\Http\Controllers\Auth;
+use App\Http\Controllers\AuthGoogle;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +27,7 @@ Route::prefix('/')->group(function() {
 });
 
 Route::prefix('/auth')->group(function() {
-    Route::get('login', [Auth::class,'index']);
-    Route::post('login', [Auth::class,'login']);
+    Route::get('/', [AuthGoogle::class,'index']);
+    Route::get('google', [AuthGoogle::class,'redirectToGoogle'])->name('login.google');
+    Route::post('login', [AuthGoogle::class,'login']);
 });
