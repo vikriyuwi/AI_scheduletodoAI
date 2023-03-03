@@ -45,7 +45,7 @@
             <div class="card" id="stepCard" style="display: none">
                 <div class="card-body">
                     
-                    <form action="{{ url('/task/create') }}" method="POST">
+                    <form action="{{ url('/task') }}" method="POST">
                         @method('POST')
                         @csrf
                         <input type="hidden" id="taskName" name="taskName">
