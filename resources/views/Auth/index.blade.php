@@ -2,7 +2,7 @@
 
 @section('main-content')
 
-<div class="container my-auto">
+<div class="container my-auto p-2 p-md-5">
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
