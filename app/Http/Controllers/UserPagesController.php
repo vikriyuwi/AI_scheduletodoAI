@@ -8,6 +8,6 @@ class UserPagesController extends Controller
 {
     public function template()
     {
-        return view('template');
+        return view('UserPages.index');
     }
 }
