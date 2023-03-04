@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
+use App\Models\Todo;
 
 class UserPagesController extends Controller
 {
@@ -16,7 +16,9 @@ class UserPagesController extends Controller
     public function index()
     {
         $userData = Auth::user();
-        return view('UserPages.index',['userData'=>$userData]);
+        $todos = Todo::where('user_id','=',$userData->user_id)->get();
+
+        return view('UserPages.index',['userData'=>$userData,'todos'=>$todos]);
     }
 
     public function tes()

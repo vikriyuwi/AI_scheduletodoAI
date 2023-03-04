@@ -7,7 +7,7 @@ use App\Models\Todo;
 use App\Models\Step;
 use Illuminate\Support\Facades\Auth;
 
-class TaskManager extends Controller
+class TodoManagement extends Controller
 {
     public function __construct()
     {
@@ -18,7 +18,9 @@ class TaskManager extends Controller
      */
     public function index()
     {
-        //
+        $userData = Auth::user();
+        $todos = Todo::where('user_id','=',$userData->user_id);
+        return view('TodoManagement.index',['userData'=>$userData,'todos'=>$todos]);
     }
 
     /**
@@ -26,7 +28,7 @@ class TaskManager extends Controller
      */
     public function create()
     {
-        //
+        return view('TodoManagement.create');
     }
 
     /**

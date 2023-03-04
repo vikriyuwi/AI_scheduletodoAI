@@ -9,10 +9,13 @@
             .navbar-nav .nav-item:not(:last-child) {
                 padding-right: 2rem;
             }
+            
+            .vh-100 {
+                min-height: 100vh;
+            }
         </style>
     </head>
-    <body>
-        
+    <body class="bg-primary">
         <!-- for content -->
         @yield('main-content')
         <!-- Font Awesome Icons -->
