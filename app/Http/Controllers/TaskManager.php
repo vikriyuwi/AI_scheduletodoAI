@@ -5,9 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Todo;
 use App\Models\Step;
+use Illuminate\Support\Facades\Auth;
 
 class TaskManager extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      */
@@ -31,12 +36,12 @@ class TaskManager extends Controller
     {
         $dataTodo = [
             'todo_name' => $request->taskName,
-            'user_id' => Session::get('user_id'),
+            'user_id' => Auth::user()->user_id,
             'todo_difficulty_level' => $request->taskDifficulty,
             'todo_link' => $request->taskLink,
             'todo_deadline' => $request->taskDeadline,
         ];
-        $currentTodo = Todo::insert($dataTodo);
+        $currentTodo = Todo::create($dataTodo);
         $taskStep = $request->taskStep;
 
         for ($i = 0; $i < $taskStep; $i++) {

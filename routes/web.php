@@ -34,5 +34,4 @@ Route::prefix('/auth')->group(function() {
     Route::get('google', [AuthGoogle::class,'redirectToGoogle'])->name('login.google');
     Route::get('logout', [AuthGoogle::class,'logout'])->name('logout');
     Route::get('google/callback',[AuthGoogle::class, 'googleCallBack']);
-    Route::post('login', [AuthGoogle::class,'login']);
 });

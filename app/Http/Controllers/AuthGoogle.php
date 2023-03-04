@@ -9,6 +9,11 @@ use App\Models\User;
 
 class AuthGoogle extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth',['except' => ['index','redirectToGoogle','googleCallBack']]);
+    }
+
     public function index() {
         return view('auth.index');
     }
