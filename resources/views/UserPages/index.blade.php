@@ -34,7 +34,7 @@
                                         </div>
                                     </div>
                                     <div class="col-2 col-md-1 text-end">
-                                        <span>{{ $progress[$index]->completed_step /  ($progress[$index]->completed_step + $progress[$index]->incompleted_step) * 100}}%</span>
+                                        <span>{{ (int)($progress[$index]->completed_step /  ($progress[$index]->completed_step + $progress[$index]->incompleted_step) * 100)}}%</span>
                                     </div>
                                 </div>     
                                 
