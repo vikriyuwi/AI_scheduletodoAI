@@ -5,8 +5,9 @@
     <div class="container pt-5">
         <div class="row">
             <div class="col-12">
-                <div class="alert alert-success" role="alert">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
                     <h4 class="alert-heading">Well done!</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     <p>You have done the task ....</p>
                     <hr>
                     <p class="mb-0">Go for it!.</p>
