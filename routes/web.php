@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserPagesController as UPC;
 use App\Http\Controllers\AuthGoogle;
-use App\Http\Controllers\TodoManagement;
+use App\Http\Controllers\TaskManager;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +22,7 @@ Route::prefix('/')->group(function() {
     Route::get('/',[UPC::class,'index'])->name('home');
     Route::get('/tes', [UPC::class,'tes']);
     Route::prefix('/todo')->group(function() {
-        Route::resource('/', TodoManagement::class);
+        Route::resource('/', TaskManager::class);
     });
 });
 

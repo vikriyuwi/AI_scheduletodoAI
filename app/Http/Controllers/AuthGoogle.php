@@ -37,52 +37,6 @@ class AuthGoogle extends Controller
 
         Auth::login($user);
         return redirect()->intended();
-
-        // $userGoogleId = $user->id;
-        // $userGoogleEmail = $user->email;
-        // $userGoogleName = $user->name;
-        // $userGooglePicture = $user->picture;
-        // $userGoogleToken = $user->token;
-
-        // $userData = User::where('user_google_id','=',$userGoogleId)->first();
-
-        // if($userData) {
-
-        //     $credentials = [
-        //         'user_name' => $userData->user_name,
-        //         'user_gmail' => $userData->user_gmail,
-        //         'user_google_id' => $userData->user_google_id,
-        //         'password' => $userData->password,
-        //         'user_token' => $userData->user_token,
-        //     ];
-
-        //     Auth::login($userData);
-        //     return redirect()->intended();
-            
-        // } else {
-        //     $newUser = [
-        //         'user_name' => $userGoogleName,
-        //         'user_gmail' => $userGoogleEmail,
-        //         'user_google_id' => $userGoogleId,
-        //         'password' => bcrypt('12345678'),
-        //         'user_token' => $userGoogleToken
-        //     ];
-
-        //     User::create($newUser);
-
-        //     $newUserData = User::where('user_google_id','=',$userGoogleId)->first();
-
-        //     $credentials = [
-        //         'user_name' => $newUserData->user_name,
-        //         'user_gmail' => $newUserData->user_gmail,
-        //         'user_google_id' => $newUserData->user_google_id,
-        //         'password' => $newUserData->password,
-        //         'user_token' => $newUserData->user_token,
-        //     ];
-
-        //     Auth::login($newUserData);
-        //     return redirect()->intended();
-        // }
     }
 
     public function logout()
