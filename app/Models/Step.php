@@ -20,4 +20,9 @@ class Step extends Model
         'created_at',
         'updated_at'
     ];
+
+    public function Todo()
+    {
+        return $this->belongsTo('App\Models\Todo','todo_id','todo_id');
+    }
 }

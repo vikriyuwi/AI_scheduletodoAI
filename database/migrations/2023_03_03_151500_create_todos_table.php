@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('todo', function (Blueprint $table) {
             $table->integer('todo_id',true);
             $table->string('todo_name',256);
+            $table->longText('todo_note');
             $table->integer('user_id');
             $table->foreign('user_id')->references('user_id')->on('user')->onUpdate('CASCADE')->onDelete('CASCADE');
             $table->integer('todo_difficulty_level');

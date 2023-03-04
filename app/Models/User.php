@@ -27,4 +27,9 @@ class User extends Model implements Authenticatable
         'created_at',
         'updated_at'
     ];
+    
+    public function Todo()
+    {
+        return $this->hasMany('App\Models\Todo','user_id','user_id');
+    }
 }
