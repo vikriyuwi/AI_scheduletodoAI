@@ -21,7 +21,7 @@ class User extends Model implements Authenticatable
         'user_google_id',
         'user_picture',
         'password',
-        'user_gender',
+        'user_pronounce',
         'user_phone',
         'user_token',
         'created_at',

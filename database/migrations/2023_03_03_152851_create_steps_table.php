@@ -16,8 +16,8 @@ return new class extends Migration
             $table->integer('todo_id');
             $table->foreign('todo_id')->references('todo_id')->on('todo')->onUpdate('CASCADE')->onDelete('CASCADE');
             $table->string('step_name',255);
-            $table->string('step_detail',255);
-            $table->boolean('step_isdone');
+            $table->string('step_detail',255)->nullable();
+            $table->boolean('step_isdone')->default(0);
             $table->timestamps();
         });
     }
