@@ -24,9 +24,4 @@ class UserPagesController extends Controller
 
         return view('UserPages.index',['userData'=>$userData,'todos'=>$todos,'progress'=>$progress]);
     }
-
-    public function tes()
-    {
-        return view('tes');
-    }
 }

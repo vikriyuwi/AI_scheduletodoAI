@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserPagesController as UPC;
 use App\Http\Controllers\AuthGoogleController;
 use App\Http\Controllers\TodoManagementController;
+use App\Http\Controllers\UserProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +21,8 @@ use App\Http\Controllers\TodoManagementController;
 
 Route::prefix('/')->group(function() {
     Route::get('/',[UPC::class,'index'])->name('home');
-    Route::get('/profile',[UPC::class,'profile'])->name('profile');
+    Route::get('/profile',[UserProfileController::class,'index'])->name('profile');
+    Route::patch('/profile/{id}/update',[UserProfileController::class,'update'])->name('profile-update');
     Route::get('/tes', [UPC::class,'tes']);
     Route::prefix('/todo')->group(function() {
         Route::resource('/', TodoManagementController::class);
