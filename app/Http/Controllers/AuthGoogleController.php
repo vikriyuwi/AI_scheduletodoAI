@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
 
-class AuthGoogle extends Controller
+class AuthGoogleController extends Controller
 {
     public function __construct()
     {

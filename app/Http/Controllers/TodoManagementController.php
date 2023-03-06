@@ -7,7 +7,7 @@ use App\Models\Todo;
 use App\Models\Step;
 use Illuminate\Support\Facades\Auth;
 
-class TodoManagement extends Controller
+class TodoManagementController extends Controller
 {
     public function __construct()
     {
