@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserPagesController as UPC;
-use App\Http\Controllers\AuthGoogle;
-use App\Http\Controllers\TodoManagement;
+use App\Http\Controllers\AuthGoogleController;
+use App\Http\Controllers\TodoManagementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,15 +20,16 @@ use App\Http\Controllers\TodoManagement;
 
 Route::prefix('/')->group(function() {
     Route::get('/',[UPC::class,'index'])->name('home');
+    Route::get('/profile',[UPC::class,'profile'])->name('profile');
     Route::get('/tes', [UPC::class,'tes']);
     Route::prefix('/todo')->group(function() {
-        Route::resource('/', TodoManagement::class);
+        Route::resource('/', TodoManagementController::class);
     });
 });
 
 Route::prefix('/auth')->group(function() {
-    Route::get('/', [AuthGoogle::class,'index'])->name('login');
-    Route::get('google', [AuthGoogle::class,'redirectToGoogle'])->name('login.google');
-    Route::get('logout', [AuthGoogle::class,'logout'])->name('logout');
-    Route::get('google/callback',[AuthGoogle::class, 'googleCallBack']);
+    Route::get('/', [AuthGoogleController::class,'index'])->name('login');
+    Route::get('google', [AuthGoogleController::class,'redirectToGoogle'])->name('login.google');
+    Route::get('logout', [AuthGoogleController::class,'logout'])->name('logout');
+    Route::get('google/callback',[AuthGoogleController::class, 'googleCallBack']);
 });
