@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-bs-theme="dark">
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -52,14 +52,11 @@
         @yield('additionalScript')
 
         <script>
-            () => {
-            'use strict'
-
             const storedTheme = localStorage.getItem('theme')
 
             const getPreferredTheme = () => {
                 if (storedTheme) {
-                return storedTheme
+                    return storedTheme
                 }
 
                 return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
@@ -74,19 +71,6 @@
             }
 
             setTheme(getPreferredTheme())
-
-            const showActiveTheme = theme => {
-                const activeThemeIcon = document.querySelector('.theme-icon-active use')
-                const btnToActive = document.querySelector(`[data-bs-theme-value="${theme}"]`)
-                const svgOfActiveBtn = btnToActive.querySelector('svg use').getAttribute('href')
-
-                document.querySelectorAll('[data-bs-theme-value]').forEach(element => {
-                element.classList.remove('active')
-                })
-
-                btnToActive.classList.add('active')
-                activeThemeIcon.setAttribute('href', svgOfActiveBtn)
-            }
 
             window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
                 if (storedTheme !== 'light' || storedTheme !== 'dark') {
@@ -107,7 +91,6 @@
                     })
                 })
             })
-            })()
         </script>
     </body>
 </html>
