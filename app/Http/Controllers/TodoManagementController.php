@@ -7,6 +7,7 @@ use App\Models\Todo;
 use App\Models\Step;
 use App\Models\TodoProgress;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class TodoManagementController extends Controller
 {
@@ -64,6 +65,9 @@ class TodoManagementController extends Controller
             ];
             Step::create($dataStep);
         }
+
+        DB::select("CALL set_todo_value(". $currentTodo->todo_id .")");
+
         return redirect('/');
     }
 
