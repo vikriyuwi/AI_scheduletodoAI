@@ -57,7 +57,7 @@
                                         <option value="1">He/Him</option>
                                         <option value="0" selected disabled>She/Her</option>
                                         <option value="3">They/Them</option>
-                                    @elseif ($userData->user_pronounce == 'She/Her')
+                                    @elseif ($userData->user_pronounce == 'They/Them')
                                         <option value="1">He/Him</option>
                                         <option value="2">She/Her</option>
                                         <option value="0" selected disabled>They/Them</option>

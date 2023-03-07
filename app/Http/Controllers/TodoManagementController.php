@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Todo;
 use App\Models\Step;
+use App\Models\TodoProgress;
 use Illuminate\Support\Facades\Auth;
 
 class TodoManagementController extends Controller
@@ -19,8 +20,10 @@ class TodoManagementController extends Controller
     public function index()
     {
         $userData = Auth::user();
-        $todos = Todo::where('user_id','=',$userData->user_id);
-        return view('TodoManagement.index',['userData'=>$userData,'todos'=>$todos]);
+        $todos = Todo::where('user_id','=',$userData->user_id)->get();
+        $progress = TodoProgress::having('user_id','=',$userData->user_id)->get();
+
+        return view('TodoManagement.index',['userData'=>$userData,'todos'=>$todos,'progress'=>$progress]);
     }
 
     /**
