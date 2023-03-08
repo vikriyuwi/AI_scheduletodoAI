@@ -20,10 +20,7 @@ class TodoManagementController extends Controller
      */
     public function index()
     {
-        $userData = Auth::user();
-        $todos = Todo::where('user_id','=',$userData->user_id)->get();
-
-        return view('TodoManagement.index',['userData'=>$userData,'todos'=>$todos]);
+        return redirect('/');
     }
 
     /**

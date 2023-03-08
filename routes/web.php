@@ -20,14 +20,14 @@ use App\Http\Controllers\UserProfileController;
 
 
 Route::prefix('/')->group(function() {
-    Route::get('/',[UPC::class,'index'])->name('home');
+    Route::get('/', [UPC::class,'index'])->name('home')->middleware(['preventBackHistory']);
+    Route::resource('todo', TodoManagementController::class);
     Route::get('profile',[UserProfileController::class,'index'])->name('profile');
     Route::patch('profile/{id}/update',[UserProfileController::class,'update'])->name('profile-update');
     Route::get('/generateKMeans', [UPC::class,'generateKMeans']);
     Route::prefix('test')->group(function(){
         Route::get('/1', [UPC::class,'tes']);
     });
-    Route::resource('/todo', TodoManagementController::class);
 });
 
 Route::prefix('/auth')->group(function() {

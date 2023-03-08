@@ -2,12 +2,6 @@
 
 @section('main-content')
     <div class="container pt-5">
-        <div class="d-flex">
-            <div class="me-auto">
-
-            </div>
-
-        </div>
         <div class="row">
             <div class="col-12 mx-auto">
                 <div class="d-flex">
@@ -15,7 +9,7 @@
                         <h2>{{$todo->todo_name}} detailed steps</h2>
                     </div>
                     <div class="px-2">
-                        <a href="{{ url('/todo') }}" class="btn btn-secondary"><i class="fa-solid fa-arrow-left-long"></i> back</a>
+                        <button onclick="history.back()" class="btn btn-secondary"><i class="fa-solid fa-arrow-left-long"></i> back</button>
                     </div>
                 </div>
                 <div class="card-group card-group-scroll scrollable">

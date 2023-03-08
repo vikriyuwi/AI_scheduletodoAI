@@ -20,9 +20,10 @@ class UserPagesController extends Controller
     public function index()
     {
         $userData = Auth::user();
-        $todos = Todo::where('user_id','=',$userData->user_id)->get();
+        $prioritytodos = Todo::where('user_id','=',$userData->user_id)->where('todo_cluster','=','1')->orderBy('todo_weight','DESC')->get();
+        $nonprioritytodos = Todo::where('user_id','=',$userData->user_id)->where('todo_cluster','=','2')->orderBy('todo_weight','DESC')->get();
 
-        return view('UserPages.index',['userData'=>$userData,'todos'=>$todos]);
+        return view('TodoManagement.index',['userData'=>$userData,'prioritytodos'=>$prioritytodos,'nonprioritytodos'=>$nonprioritytodos]);
     }
 
     public function generateKMeans()
