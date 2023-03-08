@@ -20,7 +20,10 @@ return new class extends Migration
             $table->integer('todo_difficulty_level');
             $table->string('todo_link',512)->nullable();
             $table->datetime('todo_deadline');
-            $table->integer('todo_value')->nullable();
+            $table->integer('todo_weight')->nullable();
+            $table->integer('todo_deadline_weight')->nullable();
+            $table->integer('todo_level_weight')->nullable();
+            $table->integer('todo_cluster')->default(1)->nullable();
             $table->string('todo_status',255)->default('IN PROGRESS')->nullable();
             $table->timestamps();
         });

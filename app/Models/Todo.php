@@ -19,7 +19,10 @@ class Todo extends Model
         'todo_difficulty_level',
         'todo_link',
         'todo_deadline',
-        'todo_value',
+        'todo_weight',
+        'todo_deadline_weight',
+        'todo_level_weight',
+        'todo_cluster',
         'todo_status',
         'created_at',
         'updated_at'
