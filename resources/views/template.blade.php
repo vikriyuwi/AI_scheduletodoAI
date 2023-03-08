@@ -9,6 +9,14 @@
             .navbar-nav .nav-item:not(:last-child) {
                 padding-right: 2rem;
             }
+            .scrollable .card-body {
+                min-height: 300px;
+                min-width: 300px;
+            }
+            .card-group.card-group-scroll {
+                overflow-x: auto;
+                flex-wrap: nowrap;
+            }
         </style>
     </head>
     <body>
@@ -92,5 +100,22 @@
                 })
             })
         </script>
+
+        {{-- drag and drop script --}}
+        <script>
+            function allowDrop(ev) {
+              ev.preventDefault();
+            }
+            
+            function drag(ev) {
+              ev.dataTransfer.setData("text", ev.target.id);
+            }
+            
+            function drop(ev) {
+              ev.preventDefault();
+              var data = ev.dataTransfer.getData("text");
+              ev.target.appendChild(document.getElementById(data));
+            }
+            </script>
     </body>
 </html>
