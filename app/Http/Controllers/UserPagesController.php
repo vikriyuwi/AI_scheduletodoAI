@@ -20,11 +20,8 @@ class UserPagesController extends Controller
     {
         $userData = Auth::user();
         $todos = Todo::where('user_id','=',$userData->user_id)->get();
-        $progress = TodoProgress::having('user_id','=',$userData->user_id)->get();
 
-        $todoprogress = $todos->merge($progress);
-
-        return view('UserPages.index',['userData'=>$userData,'todos'=>$todos,'progress'=>$progress]);
+        return view('UserPages.index',['userData'=>$userData,'todos'=>$todos]);
     }
 
     public function kMeans()

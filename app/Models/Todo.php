@@ -37,4 +37,9 @@ class Todo extends Model
     {
         return $this->hasMany('App\Models\Step','todo_id','todo_id');
     }
+
+    public function TodoProgress()
+    {
+        return $this->hasOne('App\Models\TodoProgress','todo_id','todo_id');
+    }
 }
