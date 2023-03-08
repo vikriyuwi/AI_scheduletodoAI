@@ -18,7 +18,14 @@
                     <div class="row p-2">
                         <div class="card col-12 p-0">
                             <div class="card-header">
-                                Todo
+                                <div class="d-flex">
+                                    <div class="me-auto">
+                                        Todo
+                                    </div>
+                                    <div>
+                                        <i class="fa-regular fa-clock"></i> {{$todo->todo_deadline}}
+                                    </div>
+                                </div>
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title">{{ $todo->todo_name }}</h5>
@@ -37,6 +44,23 @@
                                 <hr>
                                 {{-- <a href="#" class="btn btn-primary">Do task</a> --}}
                                 <a href="{{url('todo/'.$todo->todo_id)}}" class="btn btn-primary">Detail</a>
+                            </div>
+                            <div class="card-footer">
+                                <div class="d-flex text-danger">
+                                    <div class="me-auto">
+                                        Task difficulty:
+                                    </div>
+                                    <div>
+                                        @for($i=1;$i<=5;$i++)
+                                            @if($i<=$todo->todo_difficulty_level)
+                                                <i class="fa-solid fa-star"></i>
+                                            @else
+                                                <i class="fa-regular fa-star"></i>   
+                                            @endif
+                                        @endfor
+                                         {{$todo->todo_difficulty_level}}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
