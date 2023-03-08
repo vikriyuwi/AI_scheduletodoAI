@@ -76,7 +76,9 @@ class TodoManagementController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $todo = Todo::where('todo_id','=',$id)->first();
+        $steps = Step::where('todo_id','=',$id)->get();
+        return view('TodoManagement.details', ['todo'=>$todo, 'steps'=>$steps]);
     }
 
     /**

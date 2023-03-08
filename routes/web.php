@@ -24,9 +24,7 @@ Route::prefix('/')->group(function() {
     Route::get('/profile',[UserProfileController::class,'index'])->name('profile');
     Route::patch('/profile/{id}/update',[UserProfileController::class,'update'])->name('profile-update');
     Route::get('/tes', [UPC::class,'tes']);
-    Route::prefix('/todo')->group(function() {
-        Route::resource('/', TodoManagementController::class);
-    });
+    Route::resource('/todo', TodoManagementController::class);
 });
 
 Route::prefix('/auth')->group(function() {

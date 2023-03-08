@@ -36,6 +36,7 @@
                                 
                                 <hr>
                                 <a href="#" class="btn btn-primary">Do task</a>
+                                <a href="{{ url('todo/'.$todo->todo_id) }}" class="btn btn-secondary">Detail</a>
                             </div>
                         </div>
                     </div>
