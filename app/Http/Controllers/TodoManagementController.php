@@ -65,8 +65,8 @@ class TodoManagementController extends Controller
             ];
             Step::create($dataStep);
         }
-
-        DB::select("CALL set_todo_value(". $currentTodo->todo_id .")");
+        
+        DB::select("CALL set_todo_value_all()");
 
         return redirect('/');
     }

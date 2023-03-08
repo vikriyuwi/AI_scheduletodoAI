@@ -20,6 +20,7 @@ class Todo extends Model
         'todo_link',
         'todo_deadline',
         'todo_value',
+        'todo_status',
         'created_at',
         'updated_at'
     ];

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('todo_link',512)->nullable();
             $table->datetime('todo_deadline');
             $table->integer('todo_value')->nullable();
+            $table->string('todo_status',255)->default('IN PROGRESS')->nullable();
             $table->timestamps();
         });
     }
