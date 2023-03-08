@@ -10,6 +10,14 @@
         </div>
         <div class="row">
             <div class="col-12 mx-auto">
+                <div class="d-flex">
+                    <div class="me-auto px-2">
+                        <h2>{{$todo->todo_name}} detailed steps</h2>
+                    </div>
+                    <div class="px-2">
+                        <a href="{{ url('/todo') }}" class="btn btn-secondary"><i class="fa-solid fa-arrow-left-long"></i> back</a>
+                    </div>
+                </div>
                 <div class="card-group card-group-scroll scrollable">
                     <div class="card status-card" id="TodoCard" ondrop="drop(event)" ondragover="allowDrop(event)">
                         <div class="card-body rounded border border-secondary">
