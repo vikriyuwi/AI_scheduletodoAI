@@ -36,10 +36,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{ url('/') }}">Overview</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/todo') }}">Todo Management</a>
+                            <a class="nav-link active" href="{{ url('/todo') }}">Todo Management</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

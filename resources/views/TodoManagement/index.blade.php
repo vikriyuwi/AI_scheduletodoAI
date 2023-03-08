@@ -150,7 +150,7 @@
                     </div>
                 @endif
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3" style="z-index:1000">
                 <div class="row sticky-top">
                     <div class="col-12 mt-5">
                         <a href="{{ url('/todo/create') }}" class="btn my-5 btn-success d-none" id="addNewButton"><i class="fa-solid fa-plus"></i> add todo</a>
