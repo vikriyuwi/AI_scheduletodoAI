@@ -20,7 +20,7 @@ use App\Http\Controllers\UserProfileController;
 
 
 Route::prefix('/')->group(function() {
-    Route::get('/', [UPC::class,'index'])->name('home')->middleware(['preventBackHistory']);
+    Route::get('/', [UPC::class,'index'])->name('home');
     Route::resource('todo', TodoManagementController::class);
     Route::get('profile',[UserProfileController::class,'index'])->name('profile');
     Route::patch('profile/{id}/update',[UserProfileController::class,'update'])->name('profile-update');
