@@ -22,9 +22,8 @@ class TodoManagementController extends Controller
     {
         $userData = Auth::user();
         $todos = Todo::where('user_id','=',$userData->user_id)->get();
-        $progress = TodoProgress::having('user_id','=',$userData->user_id)->get();
 
-        return view('TodoManagement.index',['userData'=>$userData,'todos'=>$todos,'progress'=>$progress]);
+        return view('TodoManagement.index',['userData'=>$userData,'todos'=>$todos]);
     }
 
     /**

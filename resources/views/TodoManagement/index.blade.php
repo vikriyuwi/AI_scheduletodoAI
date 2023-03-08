@@ -26,17 +26,16 @@
                                 <div class="row">
                                     <div class="col-10 col-md-11">
                                         <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                            <div class="progress-bar bg-success" style="width: {{ $progress[$index]->completed_step /  ($progress[$index]->completed_step + $progress[$index]->incompleted_step) * 100 . '%'}}"></div>
+                                            <div class="progress-bar bg-success" style="width: {{ ($todo->TodoProgress->todo_progress /  $todo->TodoProgress->todo_total * 100) . '%'}}"></div>
                                         </div>
                                     </div>
                                     <div class="col-2 col-md-1 text-end">
-                                        <span>{{ (int)($progress[$index]->completed_step /  ($progress[$index]->completed_step + $progress[$index]->incompleted_step) * 100)}}%</span>
+                                        <span>{{ (int)($todo->TodoProgress->todo_progress /  $todo->TodoProgress->todo_total * 100)}}%</span>
                                     </div>
                                 </div>     
                                 
                                 <hr>
                                 <a href="#" class="btn btn-primary">Do task</a>
-                                <a href="{{ url('todo/'.$todo->todo_id) }}" class="btn btn-secondary">Detail</a>
                             </div>
                         </div>
                     </div>
