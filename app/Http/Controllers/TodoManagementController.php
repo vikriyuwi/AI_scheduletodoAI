@@ -65,9 +65,9 @@ class TodoManagementController extends Controller
             Step::create($dataStep);
         }
         
-        DB::select("CALL set_todo_value_all()");
+        DB::select("CALL set_todo_weight_all()");
 
-        return redirect('/');
+        return redirect('/generateKMeans');
     }
 
     /**
