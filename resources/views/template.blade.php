@@ -9,14 +9,21 @@
             .navbar-nav .nav-item:not(:last-child) {
                 padding-right: 2rem;
             }
-            .scrollable .card-body {
-                min-height: 300px;
+            .scrollable .status-card {
+                /* min-height: 300px; */
                 min-width: 300px;
             }
             .card-group.card-group-scroll {
                 overflow-x: auto;
                 flex-wrap: nowrap;
             }
+
+            .card-group.card-group-scroll .status-card {
+                border: none;
+                padding: 0.4rem;
+                box-sizing: border-box;
+            }
+
         </style>
     </head>
     <body>
@@ -56,20 +63,20 @@
 
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
-
-        @yield('additionalScript')
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
         <script>
-            const storedTheme = localStorage.getItem('theme')
 
+            const storedTheme = localStorage.getItem('theme')
+        
             const getPreferredTheme = () => {
                 if (storedTheme) {
                     return storedTheme
                 }
-
+        
                 return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
             }
-
+        
             const setTheme = function (theme) {
                 if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
                 document.documentElement.setAttribute('data-bs-theme', 'dark')
@@ -77,18 +84,18 @@
                 document.documentElement.setAttribute('data-bs-theme', theme)
                 }
             }
-
+        
             setTheme(getPreferredTheme())
-
+        
             window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
                 if (storedTheme !== 'light' || storedTheme !== 'dark') {
                 setTheme(getPreferredTheme())
                 }
             })
-
+        
             window.addEventListener('DOMContentLoaded', () => {
                 showActiveTheme(getPreferredTheme())
-
+        
                 document.querySelectorAll('[data-bs-theme-value]')
                 .forEach(toggle => {
                     toggle.addEventListener('click', () => {
@@ -101,21 +108,6 @@
             })
         </script>
 
-        {{-- drag and drop script --}}
-        <script>
-            function allowDrop(ev) {
-              ev.preventDefault();
-            }
-            
-            function drag(ev) {
-              ev.dataTransfer.setData("text", ev.target.id);
-            }
-            
-            function drop(ev) {
-              ev.preventDefault();
-              var data = ev.dataTransfer.getData("text");
-              ev.target.appendChild(document.getElementById(data));
-            }
-            </script>
+        @yield('additionalScript')
     </body>
 </html>

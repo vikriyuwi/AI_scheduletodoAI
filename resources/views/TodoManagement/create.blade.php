@@ -80,7 +80,6 @@
 @endsection
 
 @section('additionalScript')
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
     
     const modal = new bootstrap.Modal('#modalMessage');

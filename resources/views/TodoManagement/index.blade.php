@@ -35,7 +35,8 @@
                                 </div>     
                                 
                                 <hr>
-                                <a href="#" class="btn btn-primary">Do task</a>
+                                {{-- <a href="#" class="btn btn-primary">Do task</a> --}}
+                                <a href="{{url('todo/'.$todo->todo_id)}}" class="btn btn-primary">Detail</a>
                             </div>
                         </div>
                     </div>
