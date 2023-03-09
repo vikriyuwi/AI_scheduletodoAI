@@ -15,7 +15,7 @@ class AuthGoogleController extends Controller
     }
 
     public function index() {
-        return view('auth.index');
+        return view('Auth.index');
     }
 
     public function redirectToGoogle() {
