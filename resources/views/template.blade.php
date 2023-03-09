@@ -64,6 +64,9 @@
 
         <script>
 
+        var csrf = $('input[name="_token"]')[0];
+        console.log(csrf);
+
             const storedTheme = localStorage.getItem('theme')
         
             const getPreferredTheme = () => {
@@ -103,6 +106,33 @@
                     })
                 })
             })
+
+            function pagePost(path, params) {
+
+                // The rest of this code assumes you are not using a library.
+                // It can be made less verbose if you use one.
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = path;
+
+                for (const key in params) {
+                    if (params.hasOwnProperty(key))
+                    {
+                        const hiddenField = document.createElement('input');
+                        hiddenField.type = 'hidden';
+                        hiddenField.name = key;
+                        hiddenField.value = params[key];
+
+                        form.appendChild(hiddenField);
+                    }
+                }
+
+                form.appendChild(csrf);
+
+                document.body.appendChild(form);
+                form.submit();
+
+                }
         </script>
 
         @yield('additionalScript')

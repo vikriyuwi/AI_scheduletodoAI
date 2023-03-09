@@ -67,6 +67,13 @@ class TodoManagementController extends Controller
         return redirect('/generateKMeans');
     }
 
+    public function updateStepStatus(Request $request)
+    {
+        DB::select("CALL update_step_status(".$request->step_id.",'".$request->step_status."')");
+
+        return redirect('todo/'.$request->todo_id);
+    }
+
     /**
      * Display the specified resource.
      */

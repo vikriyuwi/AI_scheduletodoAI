@@ -22,6 +22,7 @@ use App\Http\Controllers\UserProfileController;
 Route::prefix('/')->group(function() {
     Route::get('/', [UPC::class,'index'])->name('home');
     Route::resource('todo', TodoManagementController::class);
+    Route::post('/todo/update-step-status',[TodoManagementController::class,'updateStepStatus']);
     Route::get('profile',[UserProfileController::class,'index'])->name('profile');
     Route::patch('profile/{id}/update',[UserProfileController::class,'update'])->name('profile-update');
     Route::get('/generateKMeans', [UPC::class,'generateKMeans']);
