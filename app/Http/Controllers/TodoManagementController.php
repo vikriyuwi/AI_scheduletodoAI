@@ -5,11 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Todo;
 use App\Models\Step;
-use App\Models\TodoProgress;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Phpml\Clustering\KMeans;
-use Phpml\Clustering\KMeans\Cluster;
 
 class TodoManagementController extends Controller
 {
@@ -22,7 +20,6 @@ class TodoManagementController extends Controller
      */
     public function index()
     {
-        DB::select("CALL set_todo_weight_all()");
         return redirect('/');
     }
 
@@ -65,18 +62,18 @@ class TodoManagementController extends Controller
             Step::create($dataStep);
         }
 
-        if(Todo::where('user_id','=',Auth::user()->user_id)->where('todo_status','!=','DONE')->get()->count() > 1) {
-            DB::select("CALL set_todo_weight_all()");
-        }
+        // if(Todo::where('user_id','=',Auth::user()->user_id)->where('todo_status','!=','DONE')->get()->count() > 1) {
+            DB::select("CALL set_todo_weight_all(".Auth::user()->user_id.")");
+        // }
 
         return redirect('/generateKMeans')->with('message','Todo '.$request->todoName.' has been added')->with('messageType','success');
     }
 
     public function updateStepStatus(Request $request)
     {
-        DB::select("CALL update_step_status(".$request->step_id.",'".$request->step_status."')");
-        DB::select("CALL set_todo_done(".$request->todo_id.")");
+        $data = DB::select("CALL set_step_status(".$request->step_id.",'".$request->step_status."')");
         $this->KMeans();
+
         return redirect('todo/'.$request->todo_id);
     }
 
@@ -116,19 +113,25 @@ class TodoManagementController extends Controller
         
         $userData = Auth::user();
         
-        $data = Todo::where('user_id','=',$userData->user_id)->get()->count();
+        // $data = Todo::where('user_id','=',$userData->user_id)->get()->count();
 
-        if ($data > 1) {
-            DB::select("CALL set_todo_weight_all()");
-        }
+        // if ($data > 1) {
+            DB::select("CALL set_todo_weight_all(".Auth::user()->user_id.")");
+        // }
 
-        return redirect('/generateKMeans')->with('message','Todo '.$todo->todo_name.' has been removed')->with('messageType','success');
+        $this->KMeans();
+
+        return redirect('/')->with('message','Todo '.$todo->todo_name.' has been removed')->with('messageType','success');
     }
 
-    public function KMeans()
+    public static function KMeans()
     {
         $userData = Auth::user();
         $data = DB::table('todo')->select('todo_deadline_weight','todo_level_weight')->where('user_id','=',$userData->user_id)->where('todo_status','!=','DONE')->get()->toArray();
+
+        if(sizeof($data) < 1) {
+            return 0;
+        }
 
         $dataToTrain = array();
 
@@ -144,6 +147,9 @@ class TodoManagementController extends Controller
         $cluster2 = $clusters[1];
 
         foreach ($cluster1 as $clust) {
+            if (sizeof($data) == 1) {
+                $clust[0] = 0;
+            }
             DB::select("CALL set_todo_cluster(".$userData->user_id.",".$clust[0].",".$clust[1].",".'1'.")");
         }
 

@@ -23,7 +23,7 @@
                         @csrf
                     </div>
                     <div class="px-2">
-                        <button onclick="history.back()" class="btn btn-secondary"><i class="fa-solid fa-arrow-left-long"></i> back</button>
+                        <a href="{{ url('todo/') }}" class="btn btn-secondary"><i class="fa-solid fa-arrow-left-long"></i> back</a>
                     </div>
                 </div>
                 <div class="card-group card-group-scroll scrollable">
@@ -38,9 +38,6 @@
                             @foreach($steps as $step)
                                 @if($step->step_status=='TODO')
                                     <div class="card step-card mb-3 p-2" id="step{{$step->step_id}}" data-step-id = "{{$step->step_id}}" draggable="true" ondragstart="drag(event)" ondrop="dropChild(event)">
-                                        {{-- <p class="mb-2 text-muted fst-italic fw-light">
-                                            <i class="fa-regular fa-circle-dashed"></i> {{$todo->todo_name}}#{{$step_sequence_number}}
-                                        </p> --}}
                                         <h5 class="card-title">
                                             {{$step->step_name}}
                                         </h5>
@@ -65,9 +62,6 @@
                             @foreach($steps as $step)
                                 @if($step->step_status=='ON PROGRESS')
                                     <div class="card step-card mb-3 p-2" id="step{{$step->step_id}}" data-step-id = "{{$step->step_id}}" draggable="true" ondragstart="drag(event)" ondrop="dropChild(event)">
-                                        {{-- <p class="mb-2 text-muted fst-italic fw-light">
-                                            <i class="fa-regular fa-circle-dashed"></i> {{$todo->todo_name}}#{{$step_sequence_number}}
-                                        </p> --}}
                                         <h5 class="card-title">
                                             {{$step->step_name}}
                                         </h5>
@@ -92,9 +86,6 @@
                             @foreach($steps as $step)
                                 @if($step->step_status=='DONE')
                                     <div class="card step-card mb-3 p-2" id="step{{$step->step_id}}" data-step-id = "{{$step->step_id}}" draggable="true" ondragstart="drag(event)" ondrop="dropChild(event)">
-                                        {{-- <p class="mb-2 text-muted fst-italic fw-light">
-                                            <i class="fa-regular fa-circle-dashed"></i> {{$todo->todo_name}}#{{$step_sequence_number}}
-                                        </p> --}}
                                         <h5 class="card-title">
                                             {{$step->step_name}}
                                         </h5>
@@ -137,8 +128,6 @@
     }
     
     function drop(ev) {
-        $('#main').addClass('d-none');
-        $('#loading-screen').removeClass('d-none');
         
         ev.preventDefault();
         var data = ev.dataTransfer.getData("text");
@@ -170,13 +159,9 @@
                 break;
         }
 
-        // console.log(todo_id);
-        // console.log(step_id);
-        // console.log(step_status_box.parentElement.id);
-        // console.log(step_status);
-        
-
         if(step_status_current !== step_status_box.parentElement.id) {
+            $('#main').addClass('d-none');
+            $('#loading-screen').removeClass('d-none');
 
             var params = {
                 'todo_id':todo_id,
