@@ -1,6 +1,19 @@
 @extends('../template')
 
 @section('main-content')
+<section id="loading-screen" class="vh-100">
+    <div class="container vh-100 d-flex">
+        <div class="row my-auto mx-auto">
+            <div class="col-12">
+                <div class="spinner">
+                    <div class="double-bounce1 bg-warning"></div>
+                    <div class="double-bounce2 bg-warning"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="main">
     <div class="container pt-5">
         <div class="row">
             <div class="col-12 mx-auto">
@@ -44,7 +57,7 @@
                     <div class="card status-card" id="ONPROGRESSCard" ondrop="drop(event)" ondragover="allowDrop(event)">
                         <div class="card-body rounded border border-secondary">
                             <h5 class="card-title">
-                                <i class="fa-regular fa-circle-play"></i> On progress
+                                <i class="fa-regular fa-circle-play text-primary"></i> On progress
                             </h5>
                             <h6 class="card-subtitle mb-2 text-muted">
                                 Steps that being done partially goes here.
@@ -71,7 +84,7 @@
                     <div class="card status-card" id="DONECard" ondrop="drop(event)" ondragover="allowDrop(event)">
                         <div class="card-body rounded border border-secondary">
                             <h5 class="card-title">
-                                <i class="fa-regular fa-circle-check"></i> Done
+                                <i class="fa-regular fa-circle-check text-success"></i> Done
                             </h5>
                             <h6 class="card-subtitle mb-2 text-muted">
                                 Finished steps goes here.
@@ -99,6 +112,7 @@
             </div>
         </div>
     </div>
+</section>
 @endsection
 
 @section('additionalScript')
@@ -106,6 +120,7 @@
 {{-- drag and drop script --}}
 <script>
 
+    $('#loading-screen').addClass('d-none');
     var step_id;
     var step_status_current;
     var step_status;
@@ -122,6 +137,9 @@
     }
     
     function drop(ev) {
+        $('#main').addClass('d-none');
+        $('#loading-screen').removeClass('d-none');
+        
         ev.preventDefault();
         var data = ev.dataTransfer.getData("text");
 

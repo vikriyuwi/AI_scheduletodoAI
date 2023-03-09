@@ -6,6 +6,9 @@
         <title>Schedule Todo</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
         <style>
+            :root {
+                --app-height: -webkit-fill-available;
+            }
             .navbar-nav .nav-item:not(:last-child) {
                 padding-right: 2rem;
             }
@@ -22,6 +25,60 @@
                 border: none;
                 padding: 0.4rem;
                 box-sizing: border-box;
+            }
+
+            .vh-100 {
+                min-height: var(--app-height);
+            }
+
+            #loading-screen {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 1500;
+            }
+
+            /* loading animation */
+            .spinner {
+                width: 40px;
+                height: 40px;
+
+                position: relative;
+                margin: 100px auto;
+            }
+
+            .double-bounce1, .double-bounce2 {
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+                opacity: 0.6;
+                position: absolute;
+                top: 0;
+                left: 0;
+                
+                -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+                animation: sk-bounce 2.0s infinite ease-in-out;
+            }
+
+            .double-bounce2 {
+                -webkit-animation-delay: -1.0s;
+                animation-delay: -1.0s;
+            }
+
+            @-webkit-keyframes sk-bounce {
+                0%, 100% { -webkit-transform: scale(0.0) }
+                50% { -webkit-transform: scale(1.0) }
+            }
+
+            @keyframes sk-bounce {
+                0%, 100% { 
+                    transform: scale(0.0);
+                    -webkit-transform: scale(0.0);
+                } 50% { 
+                    transform: scale(1.0);
+                    -webkit-transform: scale(1.0);
+                }
             }
 
         </style>
