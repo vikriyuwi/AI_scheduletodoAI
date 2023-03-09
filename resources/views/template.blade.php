@@ -65,7 +65,6 @@
         <script>
 
         var csrf = $('input[name="_token"]')[0];
-        console.log(csrf);
 
             const storedTheme = localStorage.getItem('theme')
         

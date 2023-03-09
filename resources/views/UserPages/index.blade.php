@@ -3,17 +3,19 @@
 @section('main-content')
 <section id="updateinfo">
     <div class="container pt-5">
-        <div class="row">
-            <div class="col-12">
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <h4 class="alert-heading">Well done!</h4>
+        @if (session('message'))
+            <div class="alert alert-{{ session('messageType') }} d-flex align-items-center alert-dismissible fade show" role="alert">
+                @if (session('type') == 'success')
+                    <i class="fa-solid fa-circle-check"></i>
+                @else
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                @endif
+                <div>
+                    {{ ' '.session('message') }}
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    <p>You have done the task ....</p>
-                    <hr>
-                    <p class="mb-0">Go for it!.</p>
                 </div>
             </div>
-        </div>
+        @endif
         <div class="row pt-5">
             <div class="col-md-9">
                 <h2>Todo</h2>

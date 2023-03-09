@@ -152,10 +152,13 @@
                 break;
         }
 
+        // console.log(todo_id);
+        // console.log(step_id);
+        // console.log(step_status_box.parentElement.id);
+        // console.log(step_status);
+        
+
         if(step_status_current !== step_status_box.parentElement.id) {
-            console.log(todo_id);
-            console.log(step_id);
-            console.log(step_status);
 
             var params = {
                 'todo_id':todo_id,

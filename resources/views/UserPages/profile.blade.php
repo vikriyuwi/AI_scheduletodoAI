@@ -5,7 +5,7 @@
     <div class="container pt-5">
         @if (session('message'))
             <div class="alert alert-{{ session('messageType') }} d-flex align-items-center alert-dismissible fade show" role="alert">
-                @if (session('type') == 'success')
+                @if (session('messageType') == 'success')
                     <i class="fa-solid fa-circle-check"></i>
                 @else
                     <i class="fa-solid fa-circle-exclamation"></i>

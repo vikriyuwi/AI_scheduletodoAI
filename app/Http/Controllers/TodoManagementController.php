@@ -8,6 +8,8 @@ use App\Models\Step;
 use App\Models\TodoProgress;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Phpml\Clustering\KMeans;
+use Phpml\Clustering\KMeans\Cluster;
 
 class TodoManagementController extends Controller
 {
@@ -20,6 +22,7 @@ class TodoManagementController extends Controller
      */
     public function index()
     {
+        DB::select("CALL set_todo_weight_all()");
         return redirect('/');
     }
 
@@ -61,16 +64,19 @@ class TodoManagementController extends Controller
             ];
             Step::create($dataStep);
         }
-        
-        DB::select("CALL set_todo_weight_all()");
 
-        return redirect('/generateKMeans');
+        if(Todo::where('user_id','=',Auth::user()->user_id)->where('todo_status','!=','DONE')->get()->count() > 1) {
+            DB::select("CALL set_todo_weight_all()");
+        }
+
+        return redirect('/generateKMeans')->with('message','Todo '.$request->todoName.' has been added')->with('messageType','success');
     }
 
     public function updateStepStatus(Request $request)
     {
         DB::select("CALL update_step_status(".$request->step_id.",'".$request->step_status."')");
-
+        DB::select("CALL set_todo_done(".$request->todo_id.")");
+        $this->KMeans();
         return redirect('todo/'.$request->todo_id);
     }
 
@@ -105,6 +111,46 @@ class TodoManagementController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $todo = Todo::find($id);
+        Todo::destroy($id);
+        
+        $userData = Auth::user();
+        
+        $data = Todo::where('user_id','=',$userData->user_id)->get()->count();
+
+        if ($data > 1) {
+            DB::select("CALL set_todo_weight_all()");
+        }
+
+        return redirect('/generateKMeans')->with('message','Todo '.$todo->todo_name.' has been removed')->with('messageType','success');
+    }
+
+    public function KMeans()
+    {
+        $userData = Auth::user();
+        $data = DB::table('todo')->select('todo_deadline_weight','todo_level_weight')->where('user_id','=',$userData->user_id)->where('todo_status','!=','DONE')->get()->toArray();
+
+        $dataToTrain = array();
+
+        foreach($data as $d)
+        {
+            array_push($dataToTrain,[$d->todo_deadline_weight,$d->todo_level_weight]);
+        }
+
+        $kmeans = new KMeans(2);
+        $clusters = $kmeans->cluster($dataToTrain);
+
+        $cluster1 = $clusters[0];
+        $cluster2 = $clusters[1];
+
+        foreach ($cluster1 as $clust) {
+            DB::select("CALL set_todo_cluster(".$userData->user_id.",".$clust[0].",".$clust[1].",".'1'.")");
+        }
+
+        foreach ($cluster2 as $clust) {
+            DB::select("CALL set_todo_cluster(".$userData->user_id.",".$clust[0].",".$clust[1].",".'2'.")");
+        }
+
+        return 0;
     }
 }

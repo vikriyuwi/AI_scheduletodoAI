@@ -1,8 +1,42 @@
 @extends('../template')
 
 @section('main-content')
+<div class="modal fade " id="modal-confirm-delete" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Opps..</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <form action="" method="post" class="ms-2">
+                    @method('delete')
+                    @csrf
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 <section id="updateinfo">
     <div class="container">
+        @if (session('message'))
+            <div class="alert alert-{{ session('messageType') }} d-flex align-items-center alert-dismissible fade show" role="alert">
+                @if (session('messageType') == 'success')
+                    <i class="fa-solid fa-circle-check"></i>
+                @else
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                @endif
+                <div>
+                    {{ ' '.session('message') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        @endif
         <div class="row">
             <div class="col-md-9 pt-5">
                 <div class="row">
@@ -41,11 +75,11 @@
                                         <div class="row">
                                             <div class="col-10 col-md-11">
                                                 <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                                    <div class="progress-bar bg-success" style="width: {{ ($todo->TodoProgress->todo_progress /  $todo->TodoProgress->todo_total * 100) . '%'}}"></div>
+                                                    <div class="progress-bar bg-success" style="width: {{ ($todo->TodoProgress->step_done /  $todo->TodoProgress->step_total * 100) . '%'}}"></div>
                                                 </div>
                                             </div>
                                             <div class="col-2 col-md-1 text-end">
-                                                <span>{{ (int)($todo->TodoProgress->todo_progress /  $todo->TodoProgress->todo_total * 100)}}%</span>
+                                                <span>{{ (int)($todo->TodoProgress->step_done /  $todo->TodoProgress->step_total * 100)}}%</span>
                                             </div>
                                         </div>     
                                         
@@ -64,10 +98,11 @@
                                                     {{$todo->todo_difficulty_level}}
                                                 </div>
                                             </div>
-                                            <div class="col-sm-6 text-end">
-                                                <a href="{{url('todo/'.$todo->todo_id)}}" class="btn btn-primary">Detail</a>
-                                                <a href="#" class="btn btn-danger"><i class="fa-regular fa-trash-can"></i></a>
-                                                <a href="#" class="btn btn-warning"><i class="fa-regular fa-pen-to-square"></i></a>
+                                            <div class="col-sm-6 text-end d-flex">
+                                                <a href="{{url('todo/'.$todo->todo_id)}}" class="btn btn-primary ms-auto">Detail</a>
+                                                <button class="ms-2 btn btn-danger" data-todo="{{ $todo->todo_name }}" data-action="{{ url('todo/'.$todo->todo_id) }}" data-bs-toggle="modal" data-bs-target="#modal-confirm-delete">
+                                                    <i class="fa-regular fa-trash-can"></i>
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -103,13 +138,13 @@
                                         <div class="row">
                                             <div class="col-10 col-md-11">
                                                 <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                                    <div class="progress-bar bg-success" style="width: {{ ($todo->TodoProgress->todo_progress /  $todo->TodoProgress->todo_total * 100) . '%'}}"></div>
+                                                    <div class="progress-bar bg-success" style="width: {{ ($todo->TodoProgress->step_done /  $todo->TodoProgress->step_total * 100) . '%'}}"></div>
                                                 </div>
                                             </div>
                                             <div class="col-2 col-md-1 text-end">
-                                                <span>{{ (int)($todo->TodoProgress->todo_progress /  $todo->TodoProgress->todo_total * 100)}}%</span>
+                                                <span>{{ (int)($todo->TodoProgress->step_done /  $todo->TodoProgress->step_total * 100)}}%</span>
                                             </div>
-                                        </div>     
+                                        </div>        
                                         <hr>
                                         <div class="row align-items-center">
                                             <div class="col-sm-6">
@@ -125,10 +160,11 @@
                                                     {{$todo->todo_difficulty_level}}
                                                 </div>
                                             </div>
-                                            <div class="col-sm-6 text-end">
-                                                <a href="{{url('todo/'.$todo->todo_id)}}" class="btn btn-primary">Detail</a>
-                                                <a href="#" class="btn btn-danger"><i class="fa-regular fa-trash-can"></i></a>
-                                                <a href="#" class="btn btn-warning"><i class="fa-regular fa-pen-to-square"></i></a>
+                                            <div class="col-sm-6 text-end d-flex">
+                                                <a href="{{url('todo/'.$todo->todo_id)}}" class="btn btn-primary ms-auto">Detail</a>
+                                                <button class="ms-2 btn btn-danger" data-todo="{{ $todo->todo_name }}" data-action="{{ url('todo/'.$todo->todo_id) }}" data-bs-toggle="modal" data-bs-target="#modal-confirm-delete">
+                                                    <i class="fa-regular fa-trash-can"></i>
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -175,7 +211,6 @@
     window.onunload=function(){null};
     
     var addDistance = $('#addNewButtonPrimary').offset().top;
-    console.log(addDistance);
 
     window.onscroll = function(element) {
         if(window.pageYOffset >= addDistance)
@@ -189,5 +224,12 @@
         //     alert("you're at the bottom of the page");
         // }
     };
+
+    $('#modal-confirm-delete').on('show.bs.modal', function(e) {
+        $(this).find('form').attr('action', $(e.relatedTarget).data('action'));
+        console.log($(this).find('modalBody'));
+        $(this).find('#modalBody').html('Are you sure going to remove '+$(e.relatedTarget).data('todo')+'?');
+    });
+    
 </script>
 @endsection
