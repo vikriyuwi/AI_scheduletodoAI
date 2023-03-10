@@ -8,6 +8,7 @@ use App\Models\Step;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Phpml\Clustering\KMeans;
+use Carbon\Carbon;
 
 class TodoManagementController extends Controller
 {
@@ -62,8 +63,7 @@ class TodoManagementController extends Controller
             Step::create($dataStep);
         }
 
-        DB::select("CALL set_todo_weight_all(".Auth::user()->user_id.")");
-        $this->KMeans();
+        $this->refreshCluster();
 
         return redirect('/')->with('message','Todo '.$request->todoName.' has been added')->with('messageType','success');
     }
@@ -71,7 +71,8 @@ class TodoManagementController extends Controller
     public function updateStepStatus(Request $request)
     {
         $data = DB::select("CALL set_step_status(".$request->step_id.",'".$request->step_status."')");
-        $this->KMeans();
+
+        $this->refreshCluster();
 
         return redirect('todo/'.$request->todo_id);
     }
@@ -119,6 +120,8 @@ class TodoManagementController extends Controller
             $todo->todo_link = $request->todoLink;
         }
 
+        $this->refreshCluster();
+
         $todo->save();
 
         return redirect('todo/'.$id)->with('message','Todo '.$todo->todo_name.' has been update')->with('messageType','success');;
@@ -132,17 +135,21 @@ class TodoManagementController extends Controller
         $todo = Todo::find($id);
         Todo::destroy($id);
 
-        DB::select("CALL set_todo_weight_all(".Auth::user()->user_id.")");
-
-        $this->KMeans();
+        $this->refreshCluster();
 
         return redirect('/')->with('message','Todo '.$todo->todo_name.' has been removed')->with('messageType','success');
+    }
+
+    function refreshCluster()
+    {
+        DB::select("CALL set_todo_weight_all(".Auth::user()->user_id.")");
+        $this->KMeans();
     }
 
     public static function KMeans()
     {
         $userData = Auth::user();
-        $data = DB::table('todo')->select('todo_deadline_weight','todo_level_weight')->where('user_id','=',$userData->user_id)->where('todo_status','!=','DONE')->get()->toArray();
+        $data = DB::table('todo')->select('todo_deadline_weight','todo_level_weight')->where('user_id','=',$userData->user_id)->where('todo_status','!=','DONE')->where('todo_deadline','>=',Carbon::now())->get()->toArray();
 
         if(sizeof($data) < 1) {
             return 0;

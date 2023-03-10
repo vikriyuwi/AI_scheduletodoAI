@@ -87,6 +87,15 @@
                 <div class="row p-1">
                     <div class="col-md-8">
                         <h2 class="fw-bold">{{$todo->todo_name}} detailed steps</h2>
+                        <div class="text-warning">
+                            @for($i=1;$i<=5;$i++)
+                                @if($i<=$todo->todo_difficulty_level)
+                                    <i class="fa-solid fa-star"></i>
+                                @else
+                                    <i class="fa-regular fa-star"></i>   
+                                @endif
+                            @endfor
+                        </div>
                         @csrf
                     </div>
                     <div class="col-md-4 text-start text-md-end">
@@ -98,14 +107,13 @@
                     <div class="card p-2">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-8">
+                                <div class="col-md-12">
                                     <p>{{ $todo->todo_note }}</p>
+                                    <span><i class="fa-regular fa-calendar"></i> {{substr($todo->todo_deadline,0,-9)}}</span><br>
+                                    
                                     @if ($todo->todo_link != null)
                                         <a href="{{$todo->todo_link}}" class="link link-primary fw-bold" target="_blank">Go todo link </a>                                
                                     @endif
-                                </div>
-                                <div class="col-md-4">
-
                                 </div>
                             </div>
                         </div>

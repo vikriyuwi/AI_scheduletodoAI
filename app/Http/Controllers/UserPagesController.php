@@ -18,9 +18,10 @@ class UserPagesController extends Controller
     {
         $userData = Auth::user();
         
-        $cluster1 = Todo::where('user_id','=',$userData->user_id)->where('todo_status','!=','DONE')->where('todo_cluster','=','1')->orderBy('todo_weight','DESC')->orderBy('todo_deadline','ASC')->get();
-        $cluster2 = Todo::where('user_id','=',$userData->user_id)->where('todo_status','!=','DONE')->where('todo_cluster','=','2')->orderBy('todo_weight','DESC')->orderBy('todo_deadline','ASC')->get();
+        $cluster1 = Todo::where('user_id','=',$userData->user_id)->where('todo_status','!=','DONE')->where('todo_cluster','=','1')->where('todo_deadline','>=',Carbon::now())->orderBy('todo_weight','DESC')->orderBy('todo_deadline','ASC')->get();
+        $cluster2 = Todo::where('user_id','=',$userData->user_id)->where('todo_status','!=','DONE')->where('todo_cluster','=','2')->where('todo_deadline','>=',Carbon::now())->orderBy('todo_weight','DESC')->orderBy('todo_deadline','ASC')->get();
         $donetodos = Todo::where('user_id','=',$userData->user_id)->where('todo_status','=','DONE')->orderBy('todo_weight','DESC')->orderBy('todo_deadline','ASC')->get();
+        $notdonetodos = Todo::where('user_id','=',$userData->user_id)->where('todo_status','!=','DONE')->where('todo_deadline','<=',Carbon::now())->orderBy('todo_weight','DESC')->orderBy('todo_deadline','ASC')->get();
 
         $prioritytodos = $cluster1;
         $nonprioritytodos = $cluster2;
@@ -33,7 +34,7 @@ class UserPagesController extends Controller
             $nonprioritytodos = $cluster1;
         }
 
-        return view('TodoManagement.index',['userData'=>$userData,'prioritytodos'=>$prioritytodos,'nonprioritytodos'=>$nonprioritytodos,'donetodos'=>$donetodos,'currentDate'=>Carbon::now()]);
+        return view('TodoManagement.index',['userData'=>$userData,'prioritytodos'=>$prioritytodos,'nonprioritytodos'=>$nonprioritytodos,'donetodos'=>$donetodos,'notdonetodos'=>$notdonetodos,'currentDate'=>Carbon::now()]);
     }
 
     public function generateKMeans()
