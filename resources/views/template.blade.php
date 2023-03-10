@@ -141,8 +141,11 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
         <script>
+            $(window).on('load', function(){
+                $('#loading-screen').addClass('d-none');
+            })
 
-        var csrf = $('input[name="_token"]')[0];
+            var csrf = $('input[name="_token"]')[0];
 
             const storedTheme = localStorage.getItem('theme')
         

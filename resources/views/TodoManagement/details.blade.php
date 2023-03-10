@@ -202,8 +202,6 @@
 
     var formTodoEdit = $('#modal-todo-edit form');
 
-    $('#loading-screen').addClass('d-none');
-
     var step_id;
     var step_status_current;
     var step_status;
