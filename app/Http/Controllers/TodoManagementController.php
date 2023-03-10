@@ -62,11 +62,10 @@ class TodoManagementController extends Controller
             Step::create($dataStep);
         }
 
-        // if(Todo::where('user_id','=',Auth::user()->user_id)->where('todo_status','!=','DONE')->get()->count() > 1) {
-            DB::select("CALL set_todo_weight_all(".Auth::user()->user_id.")");
-        // }
+        DB::select("CALL set_todo_weight_all(".Auth::user()->user_id.")");
+        $this->KMeans();
 
-        return redirect('/generateKMeans')->with('message','Todo '.$request->todoName.' has been added')->with('messageType','success');
+        return redirect('/')->with('message','Todo '.$request->todoName.' has been added')->with('messageType','success');
     }
 
     public function updateStepStatus(Request $request)
@@ -82,7 +81,7 @@ class TodoManagementController extends Controller
      */
     public function show(string $id)
     {
-        $todo = Todo::where('todo_id','=',$id)->first();
+        $todo = Todo::find($id);
         $steps = Step::where('todo_id','=',$id)->get();
         return view('TodoManagement.details', ['todo'=>$todo, 'steps'=>$steps]);
     }
@@ -100,7 +99,29 @@ class TodoManagementController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $todo = Todo::find($id);
+
+        $validation = $request->validate([
+            'todoName' => 'required',
+            'todoDeadline' => 'required',
+            'todoDifficulty' => 'required|not_in:0'
+        ]);
+
+        $todo->todo_name = $request->todoName;
+        $todo->todo_deadline = $request->todoDeadline;
+        $todo->todo_difficulty_level = $request->todoDifficulty;
+        $todo->todo_note = $request->todoNote;
+
+        if($request->todoLink != null) {
+            $validation2 = $request->validate([
+                'todoLink' => 'url',
+            ]);
+            $todo->todo_link = $request->todoLink;
+        }
+
+        $todo->save();
+
+        return redirect('todo/'.$id)->with('message','Todo '.$todo->todo_name.' has been update')->with('messageType','success');;
     }
 
     /**
@@ -110,14 +131,8 @@ class TodoManagementController extends Controller
     {
         $todo = Todo::find($id);
         Todo::destroy($id);
-        
-        $userData = Auth::user();
-        
-        // $data = Todo::where('user_id','=',$userData->user_id)->get()->count();
 
-        // if ($data > 1) {
-            DB::select("CALL set_todo_weight_all(".Auth::user()->user_id.")");
-        // }
+        DB::select("CALL set_todo_weight_all(".Auth::user()->user_id.")");
 
         $this->KMeans();
 

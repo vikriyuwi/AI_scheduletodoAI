@@ -81,12 +81,33 @@
                 }
             }
 
+            .bg-theme {
+                background-color: var(--bs-body-bg);
+            }
+
+            /* #loading-screen {
+                background-color: var(--bs-body-bg);
+            } */
+
         </style>
     </head>
     <body>
+        {{-- loading screen --}}
+        <section id="loading-screen" class="vh-100 bg-theme">
+            <div class="container vh-100 d-flex">
+                <div class="row my-auto mx-auto">
+                    <div class="col-12">
+                        <div class="spinner">
+                            <div class="double-bounce1 bg-warning"></div>
+                            <div class="double-bounce2 bg-warning"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#"><span class="fw-bold">Sregep</span></a>
+                <a class="navbar-brand" href="{{ url('/') }}"><span class="fw-bold">Sregep</span></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -188,7 +209,9 @@
                 document.body.appendChild(form);
                 form.submit();
 
-                }
+            }
+
+            $('.link').append(' <i class="fa-solid fa-arrow-up-right-from-square"></i>')
         </script>
 
         @yield('additionalScript')

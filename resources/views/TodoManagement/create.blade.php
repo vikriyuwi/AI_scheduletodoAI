@@ -90,6 +90,7 @@
         let value = parseInt(todoDifficultySlider[0].value);
         $('#initTodoDifficultyValue').html(value);
     });
+    
     todoDifficultySlider.oninput = function() {
         value.todoDifficultyValue = this.value;
     }

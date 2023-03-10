@@ -1,31 +1,120 @@
 @extends('../template')
 
 @section('main-content')
-<section id="loading-screen" class="vh-100">
-    <div class="container vh-100 d-flex">
-        <div class="row my-auto mx-auto">
-            <div class="col-12">
-                <div class="spinner">
-                    <div class="double-bounce1 bg-warning"></div>
-                    <div class="double-bounce2 bg-warning"></div>
-                </div>
+{{-- error modal --}}
+<div class="modal fade " id="modalMessage" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Opps..</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Understood</button>
             </div>
         </div>
     </div>
-</section>
+</div>
+{{-- edit modal --}}
+<div class="modal fade" id="modal-todo-edit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Opps..</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <form action="{{ url('todo/'.$todo->todo_id) }}" method="post" class="ms-2" onsubmit="showLoadingScreen()">
+                    @method('PUT')
+                    @csrf
+                    <div class="mb-2">
+                        <label class="mt-2" for="initTodoName">Todo Name:</label>
+                        <input class="form-control" type="text" id="initTodoName" name="todoName" value="{{$todo->todo_name}}">
+                    </div>
+                    <div class="mb-2">
+                        <label for="initTodoNote" class="mt-2">Todo Note (optional):</label>
+                        <textarea name="todoNote" id="initTodoNote" rows="5" class="form-control">{{$todo->todo_note}}</textarea>
+                    </div>
+                    <div class="mb-2">
+                        <label class="mt-2" for="initTodoDeadline">Todo Deadline:</label>
+                        <input class="form-control" type="date" id="initTodoDeadline" name="todoDeadline" value="{{substr($todo->todo_deadline,0,-9)}}">
+                    </div>
+                    <div class="mb-2">      
+                        <label class="mt-2" for="initTodoDifficulty">Todo Difficulty:</label>
+                        <div class="row">
+                            <div class="col-10 col-md-11">
+                                <input type="range" class="form-range" min="0" max="5" id="initTodoDifficulty" name="todoDifficulty" value="{{$todo->todo_difficulty_level}}"> 
+                            </div>
+                            <div class="col-2 col-md-1 text-end">
+                                <span class="me-2" id="initTodoDifficultyValue">{{$todo->todo_difficulty_level}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <label class="mt-2" for="initTodoLink">Related Link (optional):</label>
+                        <input class="form-control" type="text" id="initTodoLink" name="todoLink" value="{{ $todo->todo_link }}">
+                    </div>
+                    <button type="submit" class="btn btn-danger">Update</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 <section id="main">
     <div class="container pt-5">
+        @if (session('message'))
+            <div class="alert alert-{{ session('messageType') }} d-flex align-items-center alert-dismissible fade show" role="alert">
+                @if (session('messageType') == 'success')
+                    <i class="fa-solid fa-circle-check"></i>
+                @else
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                @endif
+                <div>
+                    {{ ' '.session('message') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        @endif
         <div class="row">
-            <div class="col-12 mx-auto">
-                <div class="d-flex">
-                    <div class="me-auto px-2">
-                        <h2>{{$todo->todo_name}} detailed steps</h2>
+            <div class="col-12">
+                <div class="row p-1">
+                    <div class="col-md-8">
+                        <h2 class="fw-bold">{{$todo->todo_name}} detailed steps</h2>
                         @csrf
                     </div>
-                    <div class="px-2">
+                    <div class="col-md-4 text-start text-md-end">
+                        <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modal-todo-edit"><i class="fa-solid fa-pen-to-square"></i></button>
                         <a href="{{ url('todo/') }}" class="btn btn-secondary"><i class="fa-solid fa-arrow-left-long"></i> back</a>
                     </div>
                 </div>
+                <div class="row p-3">
+                    <div class="card p-2">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <p>{{ $todo->todo_note }}</p>
+                                    @if ($todo->todo_link != null)
+                                        <a href="{{$todo->todo_link}}" class="link link-primary fw-bold" target="_blank">Go todo link </a>                                
+                                    @endif
+                                </div>
+                                <div class="col-md-4">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mx-auto">
                 <div class="card-group card-group-scroll scrollable">
                     <div class="card status-card" id="TODOCard" ondrop="drop(event)" ondragover="allowDrop(event)">
                         <div class="card-body rounded border border-secondary">
@@ -111,7 +200,10 @@
 {{-- drag and drop script --}}
 <script>
 
+    var formTodoEdit = $('#modal-todo-edit form');
+
     $('#loading-screen').addClass('d-none');
+
     var step_id;
     var step_status_current;
     var step_status;
@@ -160,8 +252,7 @@
         }
 
         if(step_status_current !== step_status_box.parentElement.id) {
-            $('#main').addClass('d-none');
-            $('#loading-screen').removeClass('d-none');
+            showLoadingScreen();
 
             var params = {
                 'todo_id':todo_id,
@@ -182,7 +273,24 @@
         if(ev.target.parentElement.className === "card step-card") {
             ev.target.parentElement.parentElement.appendChild(document.getElementById(data));  
         }
-        
     }
-</script>
+
+    function showLoadingScreen()
+    {
+        $('#main').addClass('d-none');
+        $('#loading-screen').removeClass('d-none');
+    }
+
+    var todoDifficultySlider = $('#initTodoDifficulty');
+    todoDifficultySlider[0].addEventListener("input", ()=> {
+        let value = parseInt(todoDifficultySlider[0].value);
+        $('#initTodoDifficultyValue').html(value);
+    });
+
+    </script>
+    @if ($errors->any())
+    <script>
+        modal.show();
+    </script>
+    @endif
 @endsection
