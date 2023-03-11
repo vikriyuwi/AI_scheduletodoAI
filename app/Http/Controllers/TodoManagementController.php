@@ -7,7 +7,7 @@ use App\Models\Todo;
 use App\Models\Step;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Phpml\Clustering\KMeans;
+use App\Http\Controllers\SystemController;
 use Carbon\Carbon;
 
 class TodoManagementController extends Controller
@@ -21,7 +21,25 @@ class TodoManagementController extends Controller
      */
     public function index()
     {
-        return redirect('/');
+        $userData = Auth::user();
+        
+        $cluster1 = Todo::where('user_id','=',$userData->user_id)->where('todo_status','!=','DONE')->where('todo_cluster','=','1')->where('todo_deadline','>=',Carbon::now())->orderBy('todo_weight','DESC')->orderBy('todo_deadline','ASC')->get();
+        $cluster2 = Todo::where('user_id','=',$userData->user_id)->where('todo_status','!=','DONE')->where('todo_cluster','=','2')->where('todo_deadline','>=',Carbon::now())->orderBy('todo_weight','DESC')->orderBy('todo_deadline','ASC')->get();
+        $donetodos = Todo::where('user_id','=',$userData->user_id)->where('todo_status','=','DONE')->orderBy('todo_weight','DESC')->orderBy('todo_deadline','ASC')->get();
+        $notdonetodos = Todo::where('user_id','=',$userData->user_id)->where('todo_status','!=','DONE')->where('todo_deadline','<=',Carbon::now())->orderBy('todo_weight','DESC')->orderBy('todo_deadline','ASC')->get();
+
+        $prioritytodos = $cluster1;
+        $nonprioritytodos = $cluster2;
+
+        if ($prioritytodos->count() == 0) {
+            $prioritytodos = $cluster2;
+            $nonprioritytodos = $cluster1;
+        } else if($nonprioritytodos->count() > 0 && $prioritytodos[0]->todo_deadline > $nonprioritytodos[0]->todo_deadline) {
+            $prioritytodos = $cluster2;
+            $nonprioritytodos = $cluster1;
+        }
+
+        return view('TodoManagement.index',['userData'=>$userData,'prioritytodos'=>$prioritytodos,'nonprioritytodos'=>$nonprioritytodos,'donetodos'=>$donetodos,'notdonetodos'=>$notdonetodos,'currentDate'=>Carbon::now()]);
     }
 
     /**
@@ -63,7 +81,7 @@ class TodoManagementController extends Controller
             Step::create($dataStep);
         }
 
-        $this->refreshCluster();
+        SystemController::refreshCluster();
 
         return redirect('/')->with('message','Todo '.$request->todoName.' has been added')->with('messageType','success');
     }
@@ -72,7 +90,7 @@ class TodoManagementController extends Controller
     {
         $data = DB::select("CALL set_step_status(".$request->step_id.",'".$request->step_status."')");
 
-        $this->refreshCluster();
+        SystemController::refreshCluster();
 
         return redirect('todo/'.$request->todo_id);
     }
@@ -84,7 +102,7 @@ class TodoManagementController extends Controller
     {
         $todo = Todo::find($id);
         $steps = Step::where('todo_id','=',$id)->get();
-        return view('TodoManagement.details', ['todo'=>$todo, 'steps'=>$steps]);
+        return view('TodoManagement.details', ['todo'=>$todo,'steps'=>$steps,'currentDate'=>Carbon::now()->addDays(1)]);
     }
 
     /**
@@ -120,11 +138,11 @@ class TodoManagementController extends Controller
             $todo->todo_link = $request->todoLink;
         }
 
-        $this->refreshCluster();
+        SystemController::refreshCluster();
 
         $todo->save();
 
-        return redirect('todo/'.$id)->with('message','Todo '.$todo->todo_name.' has been update')->with('messageType','success');;
+        return redirect('todo/'.$id)->with('message','Todo '.$todo->todo_name.' has been update')->with('messageType','success');
     }
 
     /**
@@ -135,50 +153,8 @@ class TodoManagementController extends Controller
         $todo = Todo::find($id);
         Todo::destroy($id);
 
-        $this->refreshCluster();
+        SystemController::refreshCluster();
 
         return redirect('/')->with('message','Todo '.$todo->todo_name.' has been removed')->with('messageType','success');
-    }
-
-    function refreshCluster()
-    {
-        DB::select("CALL set_todo_weight_all(".Auth::user()->user_id.")");
-        $this->KMeans();
-    }
-
-    public static function KMeans()
-    {
-        $userData = Auth::user();
-        $data = DB::table('todo')->select('todo_deadline_weight','todo_level_weight')->where('user_id','=',$userData->user_id)->where('todo_status','!=','DONE')->where('todo_deadline','>=',Carbon::now())->get()->toArray();
-
-        if(sizeof($data) < 1) {
-            return 0;
-        }
-
-        $dataToTrain = array();
-
-        foreach($data as $d)
-        {
-            array_push($dataToTrain,[$d->todo_deadline_weight,$d->todo_level_weight]);
-        }
-
-        $kmeans = new KMeans(2);
-        $clusters = $kmeans->cluster($dataToTrain);
-
-        $cluster1 = $clusters[0];
-        $cluster2 = $clusters[1];
-
-        foreach ($cluster1 as $clust) {
-            if (sizeof($data) == 1) {
-                $clust[0] = 0;
-            }
-            DB::select("CALL set_todo_cluster(".$userData->user_id.",".$clust[0].",".$clust[1].",".'1'.")");
-        }
-
-        foreach ($cluster2 as $clust) {
-            DB::select("CALL set_todo_cluster(".$userData->user_id.",".$clust[0].",".$clust[1].",".'2'.")");
-        }
-
-        return 0;
     }
 }

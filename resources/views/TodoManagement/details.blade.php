@@ -61,7 +61,56 @@
                         <label class="mt-2" for="initTodoLink">Related Link (optional):</label>
                         <input class="form-control" type="text" id="initTodoLink" name="todoLink" value="{{ $todo->todo_link }}">
                     </div>
-                    <button type="submit" class="btn btn-danger">Update</button>
+                    <button type="submit" class="btn btn-success">Update</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{{-- modal add step --}}
+<div class="modal fade" id="modal-add-step" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 fw-bold" id="staticBackdropLabel">Add new step</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <form action="{{ url('step') }}" method="post" class="ms-2" onsubmit="showLoadingScreen()">
+                    @method('POST')
+                    @csrf
+                    <input type="hidden" name="todoId" value="{{ $todo->todo_id }}">
+                    <div class="mb-2">
+                        <label class="mt-2" for="stepName">Step Name:</label>
+                        <input class="form-control" type="text" id="stepName" name="stepName">
+                    </div>
+                    <div class="mb-2">
+                        <label for="stepDetail" class="mt-2">Step Detail (optional):</label>
+                        <textarea name="stepDetail" id="stepDetail" rows="5" class="form-control"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-success">add new step</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{{-- modal confirm delete --}}
+<div class="modal fade " id="modal-confirm-delete" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Opps..</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <form action="" method="post" class="ms-2" onsubmit="showLoadingScreen()">
+                    @method('delete')
+                    @csrf
+                    <button type="submit" class="btn btn-danger">Delete</button>
                 </form>
             </div>
         </div>
@@ -107,13 +156,17 @@
                     <div class="card p-2">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-9">
                                     <p>{{ $todo->todo_note }}</p>
-                                    <span><i class="fa-regular fa-calendar"></i> {{substr($todo->todo_deadline,0,-9)}}</span><br>
+                                    <span>must be done at <b>{{substr($todo->todo_deadline,0,-9)}}</b>
+                                    </span><br>
                                     
                                     @if ($todo->todo_link != null)
                                         <a href="{{$todo->todo_link}}" class="link link-primary fw-bold" target="_blank">Go todo link </a>                                
                                     @endif
+                                </div>
+                                <div class="col-md-3 text-start text-md-end">
+                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-add-step"><i class="fa-solid fa-plus"></i> add step</button>
                                 </div>
                             </div>
                         </div>
@@ -135,14 +188,21 @@
                             @foreach($steps as $step)
                                 @if($step->step_status=='TODO')
                                     <div class="card step-card mb-3 p-2" id="step{{$step->step_id}}" data-step-id = "{{$step->step_id}}" draggable="true" ondragstart="drag(event)" ondrop="dropChild(event)">
-                                        <h5 class="card-title">
-                                            {{$step->step_name}}
-                                        </h5>
-                                        @if($step->step_detail != null)
-                                            <h6 class="card-subtitle fw-light fst-italic text-muted">
-                                                {{$step->step_detail}}
-                                            </h6>
-                                        @endif
+                                        <div class="d-flex">
+                                            <div>
+                                                <h5 class="card-title">
+                                                    {{$step->step_name}}
+                                                </h5>
+                                                @if($step->step_detail != null)
+                                                    <h6 class="card-subtitle fw-light fst-italic text-muted">
+                                                        {{$step->step_detail}}
+                                                    </h6>
+                                                @endif
+                                            </div>
+                                            <div class="ms-auto ps-2">
+                                                <button class="btn btn-outline-danger" data-step="{{ $step->step_name }}" data-action="{{ url('step/'.$step->step_id) }}" data-bs-toggle="modal" data-bs-target="#modal-confirm-delete"><i class="fa-regular fa-trash-can"></i></button>
+                                            </div>
+                                        </div>
                                     </div>
                                 @endif
                             @endforeach
@@ -159,14 +219,21 @@
                             @foreach($steps as $step)
                                 @if($step->step_status=='ON PROGRESS')
                                     <div class="card step-card mb-3 p-2" id="step{{$step->step_id}}" data-step-id = "{{$step->step_id}}" draggable="true" ondragstart="drag(event)" ondrop="dropChild(event)">
-                                        <h5 class="card-title">
-                                            {{$step->step_name}}
-                                        </h5>
-                                        @if($step->step_detail != null)
-                                            <h6 class="card-subtitle fw-light fst-italic text-muted">
-                                                {{$step->step_detail}}
-                                            </h6>
-                                        @endif
+                                        <div class="d-flex">
+                                            <div>
+                                                <h5 class="card-title">
+                                                    {{$step->step_name}}
+                                                </h5>
+                                                @if($step->step_detail != null)
+                                                    <h6 class="card-subtitle fw-light fst-italic text-muted">
+                                                        {{$step->step_detail}}
+                                                    </h6>
+                                                @endif
+                                            </div>
+                                            <div class="ms-auto ps-2">
+                                                <button class="btn btn-outline-danger" data-step="{{ $step->step_name }}" data-action="{{ url('step/'.$step->step_id) }}" data-bs-toggle="modal" data-bs-target="#modal-confirm-delete"><i class="fa-regular fa-trash-can"></i></button>
+                                            </div>
+                                        </div>
                                     </div>
                                 @endif
                             @endforeach
@@ -183,14 +250,21 @@
                             @foreach($steps as $step)
                                 @if($step->step_status=='DONE')
                                     <div class="card step-card mb-3 p-2" id="step{{$step->step_id}}" data-step-id = "{{$step->step_id}}" draggable="true" ondragstart="drag(event)" ondrop="dropChild(event)">
-                                        <h5 class="card-title">
-                                            {{$step->step_name}}
-                                        </h5>
-                                        @if($step->step_detail != null)
-                                            <h6 class="card-subtitle fw-light fst-italic text-muted">
-                                                {{$step->step_detail}}
-                                            </h6>
-                                        @endif
+                                        <div class="d-flex">
+                                            <div>
+                                                <h5 class="card-title">
+                                                    {{$step->step_name}}
+                                                </h5>
+                                                @if($step->step_detail != null)
+                                                    <h6 class="card-subtitle fw-light fst-italic text-muted">
+                                                        {{$step->step_detail}}
+                                                    </h6>
+                                                @endif
+                                            </div>
+                                            <div class="ms-auto ps-2">
+                                                <button class="btn btn-outline-danger" data-step="{{ $step->step_name }}" data-action="{{ url('step/'.$step->step_id) }}" data-bs-toggle="modal" data-bs-target="#modal-confirm-delete"><i class="fa-regular fa-trash-can"></i></button>
+                                            </div>
+                                        </div>
                                     </div>
                                 @endif
                             @endforeach
@@ -207,6 +281,12 @@
 
 {{-- drag and drop script --}}
 <script>
+    // delete step
+    $('#modal-confirm-delete').on('show.bs.modal', function(e) {
+        $(this).find('form').attr('action', $(e.relatedTarget).data('action'));
+        console.log($(this).find('modalBody'));
+        $(this).find('#modalBody').html('Are you sure going to remove '+$(e.relatedTarget).data('step')+'?');
+    });
 
     var formTodoEdit = $('#modal-todo-edit form');
 
@@ -296,7 +376,8 @@
     </script>
     @if ($errors->any())
     <script>
-        modal.show();
+        var modalMessage = new bootstrap.Modal('#modalMessage');
+        modalMessage.show();
     </script>
     @endif
 @endsection

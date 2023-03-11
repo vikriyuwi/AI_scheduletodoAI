@@ -1,6 +1,7 @@
 @extends('../template')
 
 @section('main-content')
+{{-- modal confirm delete --}}
 <div class="modal fade " id="modal-confirm-delete" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -13,7 +14,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <form action="" method="post" class="ms-2">
+                <form action="" method="post" class="ms-2" onsubmit="showLoadingScreen()">
                     @method('delete')
                     @csrf
                     <button type="submit" class="btn btn-danger">Delete</button>
@@ -251,7 +252,7 @@
                 <div class="card mt-4 bg-danger mb-4">
                     <div class="card-header">
                         <div class="me-auto">
-                            <h3 class="fw-bold">Todo done</h3>
+                            <h3 class="fw-bold">Todo late</h3>
                         </div>
                     </div>
                     <div class="card-body p-3">
@@ -344,14 +345,10 @@
         } else {
             $('#addNewButton').addClass('d-none');
         }
-        // if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
-        //     alert("you're at the bottom of the page");
-        // }
     };
 
     $('#modal-confirm-delete').on('show.bs.modal', function(e) {
         $(this).find('form').attr('action', $(e.relatedTarget).data('action'));
-        console.log($(this).find('modalBody'));
         $(this).find('#modalBody').html('Are you sure going to remove '+$(e.relatedTarget).data('todo')+'?');
     });
     
