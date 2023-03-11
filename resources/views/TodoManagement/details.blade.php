@@ -27,7 +27,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">Opps..</h1>
+                <h1 class="modal-title fs-5 fw-bold" id="staticBackdropLabel">Edit todo</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body" id="modalBody">
@@ -136,12 +136,12 @@
                 <div class="row p-1">
                     <div class="col-md-8">
                         <h2 class="fw-bold">{{$todo->todo_name}} detailed steps</h2>
-                        <div class="text-warning">
+                        <div>
                             @for($i=1;$i<=5;$i++)
                                 @if($i<=$todo->todo_difficulty_level)
-                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-fire text-danger"></i>
                                 @else
-                                    <i class="fa-regular fa-star"></i>   
+                                    <i class="fa-solid fa-fire text-secondary"></i>  
                                 @endif
                             @endfor
                         </div>
