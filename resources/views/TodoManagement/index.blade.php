@@ -88,12 +88,12 @@
                                         <div class="row align-items-center">
                                             <div class="col-sm-6">
                                                 Task difficulty:
-                                                <div class="text-warning">
+                                                <div>
                                                     @for($i=1;$i<=5;$i++)
                                                         @if($i<=$todo->todo_difficulty_level)
-                                                            <i class="fa-solid fa-star"></i>
+                                                            <i class="fa-solid fa-fire text-danger"></i>
                                                         @else
-                                                            <i class="fa-regular fa-star"></i>   
+                                                            <i class="fa-solid fa-fire text-secondary"></i>  
                                                         @endif
                                                     @endfor
                                                 </div>
@@ -149,12 +149,12 @@
                                         <div class="row align-items-center">
                                             <div class="col-sm-6">
                                                 Task difficulty:
-                                                <div class="text-warning">
+                                                <div>
                                                     @for($i=1;$i<=5;$i++)
                                                         @if($i<=$todo->todo_difficulty_level)
-                                                            <i class="fa-solid fa-star"></i>
+                                                            <i class="fa-solid fa-fire text-danger"></i>
                                                         @else
-                                                            <i class="fa-regular fa-star"></i>   
+                                                            <i class="fa-solid fa-fire text-secondary"></i>  
                                                         @endif
                                                     @endfor
                                                 </div>
@@ -223,12 +223,12 @@
                                     <div class="row align-items-center">
                                         <div class="col-sm-6">
                                             Task difficulty:
-                                            <div class="text-warning">
+                                            <div>
                                                 @for($i=1;$i<=5;$i++)
                                                     @if($i<=$todo->todo_difficulty_level)
-                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-fire text-danger"></i>
                                                     @else
-                                                        <i class="fa-regular fa-star"></i>   
+                                                        <i class="fa-solid fa-fire text-secondary"></i>  
                                                     @endif
                                                 @endfor
                                             </div>
@@ -286,12 +286,12 @@
                                     <div class="row align-items-center">
                                         <div class="col-sm-6">
                                             Task difficulty:
-                                            <div class="text-warning">
+                                            <div>
                                                 @for($i=1;$i<=5;$i++)
                                                     @if($i<=$todo->todo_difficulty_level)
-                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-fire text-danger"></i>
                                                     @else
-                                                        <i class="fa-regular fa-star"></i>   
+                                                        <i class="fa-solid fa-fire text-secondary"></i>  
                                                     @endif
                                                 @endfor
                                             </div>
