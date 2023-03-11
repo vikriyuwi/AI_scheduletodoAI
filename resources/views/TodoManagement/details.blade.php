@@ -333,7 +333,7 @@
                 step_status = "DONE"
                 break;
             default:
-                step_status = ev.target.parentElement.id;
+                step_status = "TODO";
                 break;
         }
 
