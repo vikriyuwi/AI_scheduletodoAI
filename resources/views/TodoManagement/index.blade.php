@@ -39,7 +39,7 @@
             </div>
         @endif
         <div class="row">
-            <div class="col-md-9 p-5 rounded-5 bg-body">
+            <div class="col-md-9 p-md-5 rounded-5 bg-body">
                 <div class="row">
                     <div class="col-md-6">
                         <h1 class="">Hi,<br>{{ $userData->user_name }}</h1>
