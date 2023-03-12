@@ -147,13 +147,13 @@
                         </div>
                         @csrf
                     </div>
-                    <div class="col-md-4 text-start text-md-end">
-                        <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modal-todo-edit"><i class="fa-solid fa-pen-to-square"></i></button>
-                        <a href="{{ url('todo/') }}" class="btn btn-secondary"><i class="fa-solid fa-arrow-left-long"></i> back</a>
+                    <div class="col-md-4 text-start text-md-end pt-3 pt-md-0">
+                        <button class="btn btn-warning rounded-pill" data-bs-toggle="modal" data-bs-target="#modal-todo-edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                        <a href="{{ url('todo/') }}" class="btn btn-secondary rounded-pill"><i class="fa-solid fa-arrow-left-long"></i> back</a>
                     </div>
                 </div>
                 <div class="row p-3">
-                    <div class="card p-2">
+                    <div class="card p-2 rounded-4 border-0">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-9">
@@ -165,8 +165,8 @@
                                         <a href="{{$todo->todo_link}}" class="link link-primary fw-bold" target="_blank">Go todo link </a>                                
                                     @endif
                                 </div>
-                                <div class="col-md-3 text-start text-md-end">
-                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-add-step"><i class="fa-solid fa-plus"></i> add step</button>
+                                <div class="col-md-3 text-start text-md-end pt-3 pt-md-0">
+                                    <button class="btn btn-primary rounded-pill" data-bs-toggle="modal" data-bs-target="#modal-add-step"><i class="fa-solid fa-plus"></i> add step</button>
                                 </div>
                             </div>
                         </div>
@@ -177,8 +177,8 @@
         <div class="row">
             <div class="col-12 mx-auto">
                 <div class="card-group card-group-scroll scrollable">
-                    <div class="card status-card" id="TODOCard" ondrop="drop(event)" ondragover="allowDrop(event)">
-                        <div class="card-body rounded border border-secondary">
+                    <div class="card status-card p-4 rounded-4" id="TODOCard" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        <div class="card-body rounded-4 border-0 bg-body-tertiary">
                             <h5 class="card-title">
                                 <i class="fa-regular fa-circle-dot"></i> Todo
                             </h5>
@@ -187,7 +187,7 @@
                             </h6>
                             @foreach($steps as $step)
                                 @if($step->step_status=='TODO')
-                                    <div class="card step-card mb-3 p-2" id="step{{$step->step_id}}" data-step-id = "{{$step->step_id}}" draggable="true" ondragstart="drag(event)" ondrop="dropChild(event)">
+                                    <div class="card step-card mb-3 p-3 rounded-4" id="step{{$step->step_id}}" data-step-id = "{{$step->step_id}}" draggable="true" ondragstart="drag(event)" ondrop="dropChild(event)">
                                         <div class="d-flex">
                                             <div>
                                                 <h5 class="card-title">
@@ -199,8 +199,8 @@
                                                     </h6>
                                                 @endif
                                             </div>
-                                            <div class="ms-auto ps-2">
-                                                <button class="btn btn-outline-danger" data-step="{{ $step->step_name }}" data-action="{{ url('step/'.$step->step_id) }}" data-bs-toggle="modal" data-bs-target="#modal-confirm-delete"><i class="fa-regular fa-trash-can"></i></button>
+                                            <div class="ms-auto ps-2 d-flex align-items-center">
+                                                <button class="btn btn-outline-danger rounded-pill" data-step="{{ $step->step_name }}" data-action="{{ url('step/'.$step->step_id) }}" data-bs-toggle="modal" data-bs-target="#modal-confirm-delete"><i class="fa-regular fa-trash-can"></i></button>
                                             </div>
                                         </div>
                                     </div>
@@ -208,8 +208,8 @@
                             @endforeach
                         </div>
                     </div>
-                    <div class="card status-card" id="ONPROGRESSCard" ondrop="drop(event)" ondragover="allowDrop(event)">
-                        <div class="card-body rounded border border-secondary">
+                    <div class="card status-card p-4 rounded-4" id="ONPROGRESSCard" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        <div class="card-body rounded-4 border-0 bg-body-tertiary">
                             <h5 class="card-title">
                                 <i class="fa-regular fa-circle-play text-primary"></i> On progress
                             </h5>
@@ -218,7 +218,7 @@
                             </h6>
                             @foreach($steps as $step)
                                 @if($step->step_status=='ON PROGRESS')
-                                    <div class="card step-card mb-3 p-2" id="step{{$step->step_id}}" data-step-id = "{{$step->step_id}}" draggable="true" ondragstart="drag(event)" ondrop="dropChild(event)">
+                                    <div class="card step-card mb-3 p-3 rounded-4" id="step{{$step->step_id}}" data-step-id = "{{$step->step_id}}" draggable="true" ondragstart="drag(event)" ondrop="dropChild(event)">
                                         <div class="d-flex">
                                             <div>
                                                 <h5 class="card-title">
@@ -230,8 +230,8 @@
                                                     </h6>
                                                 @endif
                                             </div>
-                                            <div class="ms-auto ps-2">
-                                                <button class="btn btn-outline-danger" data-step="{{ $step->step_name }}" data-action="{{ url('step/'.$step->step_id) }}" data-bs-toggle="modal" data-bs-target="#modal-confirm-delete"><i class="fa-regular fa-trash-can"></i></button>
+                                            <div class="ms-auto ps-2 d-flex align-items-center">
+                                                <button class="btn btn-outline-danger rounded-pill" data-step="{{ $step->step_name }}" data-action="{{ url('step/'.$step->step_id) }}" data-bs-toggle="modal" data-bs-target="#modal-confirm-delete"><i class="fa-regular fa-trash-can"></i></button>
                                             </div>
                                         </div>
                                     </div>
@@ -239,8 +239,8 @@
                             @endforeach
                         </div>
                     </div>
-                    <div class="card status-card" id="DONECard" ondrop="drop(event)" ondragover="allowDrop(event)">
-                        <div class="card-body rounded border border-secondary">
+                    <div class="card status-card p-4 rounded-4" id="DONECard" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        <div class="card-body rounded-4 border-0 bg-body-tertiary">
                             <h5 class="card-title">
                                 <i class="fa-regular fa-circle-check text-success"></i> Done
                             </h5>
@@ -249,7 +249,7 @@
                             </h6>
                             @foreach($steps as $step)
                                 @if($step->step_status=='DONE')
-                                    <div class="card step-card mb-3 p-2" id="step{{$step->step_id}}" data-step-id = "{{$step->step_id}}" draggable="true" ondragstart="drag(event)" ondrop="dropChild(event)">
+                                    <div class="card step-card mb-3 p-3 rounded-4" id="step{{$step->step_id}}" data-step-id = "{{$step->step_id}}" draggable="true" ondragstart="drag(event)" ondrop="dropChild(event)">
                                         <div class="d-flex">
                                             <div>
                                                 <h5 class="card-title">
@@ -261,8 +261,8 @@
                                                     </h6>
                                                 @endif
                                             </div>
-                                            <div class="ms-auto ps-2">
-                                                <button class="btn btn-outline-danger" data-step="{{ $step->step_name }}" data-action="{{ url('step/'.$step->step_id) }}" data-bs-toggle="modal" data-bs-target="#modal-confirm-delete"><i class="fa-regular fa-trash-can"></i></button>
+                                            <div class="ms-auto ps-2 d-flex align-items-center">
+                                                <button class="btn btn-outline-danger rounded-pill" data-step="{{ $step->step_name }}" data-action="{{ url('step/'.$step->step_id) }}" data-bs-toggle="modal" data-bs-target="#modal-confirm-delete"><i class="fa-regular fa-trash-can"></i></button>
                                             </div>
                                         </div>
                                     </div>
@@ -311,12 +311,14 @@
         var data = ev.dataTransfer.getData("text");
 
         var step_status_box;
-        if(ev.target.parentElement.className === "card status-card") {
+        if(ev.target.parentElement.className === "card status-card p-4 rounded-4") {
             step_status_box = ev.target;
-        }else if(ev.target.parentElement.className === "card-body rounded border border-secondary"){
+        }else if(ev.target.parentElement.parentElement.className === "card status-card p-4 rounded-4"){
             step_status_box = ev.target.parentElement;
+        }else if(ev.target.parentElement.parentElement.parentElement.className === "card status-card p-4 rounded-4"){
+            step_status_box = ev.target.parentElement.parentElement;
         }else{
-            step_status_box = ev.target.parentElement.parentElement; 
+            step_status_box = ev.target.parentElement.parentElement.parentElement; 
         }
 
         step_status_box.appendChild(document.getElementById(data));

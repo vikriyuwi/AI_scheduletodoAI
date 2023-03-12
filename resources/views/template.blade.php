@@ -89,11 +89,45 @@
                 background-color: var(--bs-body-bg);
             } */
 
+            .bg-trans-warning {
+                --bs-bg-opacity: 0.1;
+                background-color: rgba(var(--bs-warning-rgb), var(--bs-bg-opacity)) !important;
+            }
+
+            .bg-trans-primary {
+                --bs-bg-opacity: 0.1;
+                background-color: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) !important;
+            }
+
+            .bg-trans-secondary {
+                --bs-bg-opacity: 0.1;
+                background-color: rgba(var(--bs-secondary-rgb), var(--bs-bg-opacity)) !important;
+            }
+
+            .bg-trans-success {
+                --bs-bg-opacity: 0.1;
+                background-color: rgba(var(--bs-success-rgb), var(--bs-bg-opacity)) !important;
+            }
+
+            .bg-trans-danger {
+                --bs-bg-opacity: 0.1;
+                background-color: rgba(var(--bs-danger-rgb), var(--bs-bg-opacity)) !important;
+            }
+
+            .bg-trans-info {
+                --bs-bg-opacity: 0.1;
+                background-color: rgba(var(--bs-info-rgb), var(--bs-bg-opacity)) !important;
+            }
+
+            .link {
+                text-decoration: none;
+            }
         </style>
+        @yield('additional-style')
     </head>
-    <body>
+    <body class="bg-body-tertiary">
         {{-- loading screen --}}
-        <section id="loading-screen" class="vh-100 bg-theme">
+        <section id="loading-screen" class="vh-100 bg-body-tertiary">
             <div class="container vh-100 d-flex">
                 <div class="row my-auto mx-auto">
                     <div class="col-12">

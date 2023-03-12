@@ -80,7 +80,7 @@
                                 <input type="checkbox" class="form-check-input" id="enableNotification">
                                 <label class="form-check-label" for="enableNotification">Send me notification on email</label>
                             </div>
-                            <button type="submit" class="btn btn-primary">Update profile</button>
+                            <button type="submit" class="btn btn-primary rounded-pill">Update profile</button>
                         </form>
                     </div>
                 </div>
