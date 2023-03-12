@@ -83,7 +83,7 @@ class TodoManagementController extends Controller
 
         SystemController::refreshCluster();
 
-        return redirect('/')->with('message','Todo '.$request->todoName.' has been added')->with('messageType','success');
+        return redirect('todo/')->with('message','Todo '.$request->todoName.' has been added')->with('messageType','success');
     }
 
     public function updateStepStatus(Request $request)
@@ -155,6 +155,6 @@ class TodoManagementController extends Controller
 
         SystemController::refreshCluster();
 
-        return redirect('/')->with('message','Todo '.$todo->todo_name.' has been removed')->with('messageType','success');
+        return redirect('todo/')->with('message','Todo '.$todo->todo_name.' has been removed')->with('messageType','success');
     }
 }

@@ -17,10 +17,9 @@
         </div>
     </div>
 </div>
-
-<section id="updateinfo">
-    <div class="container pt-5">
-        <div class="row pt-5">
+<section id="main">
+    <div class="container">
+        <div class="row">
             <div class="col-md-9 mx-auto">
                 <div class="row">
                     <div class="col-md-12">
@@ -29,17 +28,17 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12 mx-auto">
-                        <div class="card" id="todoCard">
-                            <div class="card-body">
+                        <div class="card border-0 rounded-5" id="todoCard">
+                            <div class="card-body p-5">
                                 <form action="">
                                     @csrf
-                                    <label class="mt-2" for="initTodoName">Todo Name:</label>
+                                    <label class="mt-4" for="initTodoName">Todo Name:</label>
                                     <input class="form-control" type="text" id="initTodoName" name="todoName">    
-                                    <label for="initTodoNote" class="mt-2">Todo Note (optional):</label>
+                                    <label for="initTodoNote" class="mt-4">Todo Note (optional):</label>
                                     <textarea name="todoNote" id="initTodoNote" rows="5" class="form-control"></textarea>
-                                    <label class="mt-2" for="initTodoDeadline">Todo Deadline:</label>
+                                    <label class="mt-4" for="initTodoDeadline">Todo Deadline:</label>
                                     <input class="form-control" type="date" id="initTodoDeadline" name="todoDeadline">           
-                                    <label class="mt-2" for="initTodoDifficulty">Todo Difficulty:</label>
+                                    <label class="mt-4" for="initTodoDifficulty">Todo Difficulty:</label>
                                     <div class="row">
                                         <div class="col-10 col-md-11">
                                             <input type="range" class="form-range" min="0" max="5" id="initTodoDifficulty" name="todoDifficulty"> 
@@ -48,16 +47,16 @@
                                             <span class="me-2" id="initTodoDifficultyValue">3</span>
                                         </div>
                                     </div>         
-                                    <label class="mt-2" for="initTodoSteps">Todo Steps Count:</label>
+                                    <label class="mt-4" for="initTodoSteps">Todo Steps Count:</label>
                                     <input class="form-control" type="number" id="initTodoSteps" name="todoSteps">           
-                                    <label class="mt-2" for="initTodoLink">Related Link (optional):</label>
+                                    <label class="mt-4" for="initTodoLink">Related Link (optional):</label>
                                     <input class="form-control" type="text" id="initTodoLink" name="todoLink">           
-                                    <a class="btn btn-success mt-2" id="submit-button">Submit</a>
+                                    <a class="btn btn-success mt-4 rounded-pill" id="submit-button">Submit</a>
                                 </form>
                             </div>
                         </div>
-                        <div class="card" id="stepCard" style="display: none">
-                            <div class="card-body">
+                        <div class="card border-0 rounded-5" id="stepCard" style="display: none">
+                            <div class="card-body p-5">
                                 <form action="{{ url('/todo') }}" method="POST">
                                     @method('POST')
                                     @csrf
@@ -156,6 +155,7 @@
 
         for (var i = 1; i <= todoSteps; i++) {
             var stepName = $('<label>', {
+            class:"mt-4 mb-2",
             for: 'stepName',
             text: 'Step ' + i + ':'
             }).add($('<input>', {
@@ -175,7 +175,7 @@
             });
             newForm.append(stepName).append(stepDesc);
         }
-        newForm.append($('<button type="submit">Submit</button>'))
+        newForm.append($('<button class="btn btn-success rounded-pill mt-2" type="submit">Submit</button>'))
         });
     });
     </script>

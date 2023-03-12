@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Schedule Todo</title>
+        {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous"> --}}
         <link href="{{ url('/assets/css/srgepp.min.css') }}" rel="stylesheet">
         <style>
             :root {
@@ -95,12 +96,12 @@
             }
 
             .bg-trans-primary {
-                --bs-bg-opacity: 0.1;
+                --bs-bg-opacity: 0.03;
                 background-color: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) !important;
             }
 
             .bg-trans-secondary {
-                --bs-bg-opacity: 0.1;
+                --bs-bg-opacity: 0.08;
                 background-color: rgba(var(--bs-secondary-rgb), var(--bs-bg-opacity)) !important;
             }
 
@@ -131,20 +132,58 @@
                 background-color: #FFFFFF !important;
             }
 
+            .form-control {
+                background-color: #F8F9FA;
+                border: none;
+            }
+        </style>
+        {{-- <style>
             @media (prefers-color-scheme: dark) {
                 :root {
                     --bs-card-bg: #2B3036 !important;
+                    --bs-primary: #2B3036 !important;
                 }
+
                 .bg-body {
                     background-color: #212529 !important;
+                    color:white;
                 }
 
                 .bg-body-tertiary {
                     background-color: #2B3036;
                     color:white;
                 }
+
+                [class="card"] {
+                    background-color: #212529 !important;
+                }
+
+                .form-control {
+                    background-color: #2B3036;
+                    border: none;
+                    color: white;
+                }
+
+                .form-control:focus {
+                    background-color: #2B3036;
+                    color: white;
+                }
+
+                .modal-content {
+                    background-color: #212529;
+                    border: none;
+                    color: white;
+                }
+
+                .button-close {
+                    color: white !important;
+                }
+
+                .link .link-primary {
+                    color: var(--bs-primary);
+                }
             }
-        </style>
+        </style> --}}
         @yield('additional-style')
     </head>
     <body class="bg-body-tertiary">

@@ -153,7 +153,7 @@
                     </div>
                 </div>
                 <div class="row p-3">
-                    <div class="card p-2 rounded-4 border-0">
+                    <div class="card p-2 rounded-4 border-0 bg-body">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-9">
@@ -176,18 +176,18 @@
         </div>
         <div class="row">
             <div class="col-12 mx-auto">
-                <div class="card-group card-group-scroll scrollable">
-                    <div class="card status-card p-4 rounded-4" id="TODOCard" ondrop="drop(event)" ondragover="allowDrop(event)">
-                        <div class="card-body rounded-4 border-0 bg-body-tertiary">
+                <div class="card-group card-group-scroll scrollable rounded-5 bg-body">
+                    <div class="card status-card p-4 rounded-5 bg-body" id="TODOCard" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        <div class="card-body p-4 rounded-5 border-0 bg-body-tertiary">
                             <h5 class="card-title">
                                 <i class="fa-regular fa-circle-dot"></i> Todo
                             </h5>
-                            <h6 class="card-subtitle mb-2 text-muted">
+                            <h6 class="card-subtitle mb-4 text-muted">
                                 Steps that waiting to be done goes here.
                             </h6>
                             @foreach($steps as $step)
                                 @if($step->step_status=='TODO')
-                                    <div class="card step-card mb-3 p-3 rounded-4" id="step{{$step->step_id}}" data-step-id = "{{$step->step_id}}" draggable="true" ondragstart="drag(event)" ondrop="dropChild(event)">
+                                    <div class="card step-card mb-3 p-4 rounded-5 bg-body" id="step{{$step->step_id}}" data-step-id = "{{$step->step_id}}" draggable="true" ondragstart="drag(event)" ondrop="dropChild(event)">
                                         <div class="d-flex">
                                             <div>
                                                 <h5 class="card-title">
@@ -208,17 +208,17 @@
                             @endforeach
                         </div>
                     </div>
-                    <div class="card status-card p-4 rounded-4" id="ONPROGRESSCard" ondrop="drop(event)" ondragover="allowDrop(event)">
-                        <div class="card-body rounded-4 border-0 bg-body-tertiary">
+                    <div class="card status-card p-4 rounded-5 bg-body" id="ONPROGRESSCard" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        <div class="card-body p-4 rounded-5 border-0 bg-body-tertiary">
                             <h5 class="card-title">
                                 <i class="fa-regular fa-circle-play text-primary"></i> On progress
                             </h5>
-                            <h6 class="card-subtitle mb-2 text-muted">
+                            <h6 class="card-subtitle mb-4 text-muted">
                                 Steps that being done partially goes here.
                             </h6>
                             @foreach($steps as $step)
                                 @if($step->step_status=='ON PROGRESS')
-                                    <div class="card step-card mb-3 p-3 rounded-4" id="step{{$step->step_id}}" data-step-id = "{{$step->step_id}}" draggable="true" ondragstart="drag(event)" ondrop="dropChild(event)">
+                                    <div class="card step-card mb-3 p-4 rounded-5 bg-body" id="step{{$step->step_id}}" data-step-id = "{{$step->step_id}}" draggable="true" ondragstart="drag(event)" ondrop="dropChild(event)">
                                         <div class="d-flex">
                                             <div>
                                                 <h5 class="card-title">
@@ -239,17 +239,17 @@
                             @endforeach
                         </div>
                     </div>
-                    <div class="card status-card p-4 rounded-4" id="DONECard" ondrop="drop(event)" ondragover="allowDrop(event)">
-                        <div class="card-body rounded-4 border-0 bg-body-tertiary">
+                    <div class="card status-card p-4 rounded-5 bg-body" id="DONECard" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        <div class="card-body p-4 rounded-5 border-0 bg-body-tertiary">
                             <h5 class="card-title">
                                 <i class="fa-regular fa-circle-check text-success"></i> Done
                             </h5>
-                            <h6 class="card-subtitle mb-2 text-muted">
+                            <h6 class="card-subtitle mb-4 text-muted">
                                 Finished steps goes here.
                             </h6>
                             @foreach($steps as $step)
                                 @if($step->step_status=='DONE')
-                                    <div class="card step-card mb-3 p-3 rounded-4" id="step{{$step->step_id}}" data-step-id = "{{$step->step_id}}" draggable="true" ondragstart="drag(event)" ondrop="dropChild(event)">
+                                    <div class="card step-card mb-3 p-4 rounded-5 bg-body" id="step{{$step->step_id}}" data-step-id = "{{$step->step_id}}" draggable="true" ondragstart="drag(event)" ondrop="dropChild(event)">
                                         <div class="d-flex">
                                             <div>
                                                 <h5 class="card-title">
@@ -310,15 +310,16 @@
         ev.preventDefault();
         var data = ev.dataTransfer.getData("text");
 
+        var status_card_text = "card status-card p-4 rounded-5 bg-body";
         var step_status_box;
-        if(ev.target.parentElement.className === "card status-card p-4 rounded-4") {
+        if(ev.target.parentElement.className === status_card_text) {
             step_status_box = ev.target;
-        }else if(ev.target.parentElement.parentElement.className === "card status-card p-4 rounded-4"){
+        }else if(ev.target.parentElement.parentElement.className === status_card_text){
             step_status_box = ev.target.parentElement;
-        }else if(ev.target.parentElement.parentElement.parentElement.className === "card status-card p-4 rounded-4"){
+        }else if(ev.target.parentElement.parentElement.parentElement.className === status_card_text){
             step_status_box = ev.target.parentElement.parentElement;
         }else{
-            step_status_box = ev.target.parentElement.parentElement.parentElement; 
+            step_status_box = ev.target.parentElement.parentElement.parentElement;
         }
 
         step_status_box.appendChild(document.getElementById(data));
