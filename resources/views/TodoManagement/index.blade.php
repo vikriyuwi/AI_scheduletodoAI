@@ -50,7 +50,7 @@
                 </div>
                 {{-- priority todo --}}
                 @if($prioritytodos->count() != 0)
-                    <div class="card mt-4 border-0 rounded-4 bg-trans-primary">
+                    <div class="card mt-4 border-0 rounded-5 bg-trans-primary">
                         <div class="card-body p-4">
                             <div class="row">
                                 <div class="col-12">
@@ -58,10 +58,10 @@
                                     <p>Get ready to level up your productivity game and flaunt your smarts!<br><b>Starting off with our recommendations</b> is the smartest move you'll make today!</p>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row pt-3">
                             @foreach ($prioritytodos as $index => $todo)
                             <div class="col-lg-6 col-xl-6 col-xxl-4 mb-3">
-                                <div class="card p-0 border-0 rounded-4 h-100">
+                                <div class="card p-md-2 border-0 rounded-4 h-100 bg-body">
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="d-flex">
@@ -78,12 +78,12 @@
                                     </div>
                                     <div class="card-footer border-0 bg-body rounded-4 pt-0 py-4">
                                         <div class="row">
-                                            <div class="col-10 col-md-9 col-xxl-9 d-flex align-items-center">
-                                                <div class="progress col-12" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                                    <div class="progress-bar bg-success" style="width: {{ ($todo->TodoProgress->step_done /  $todo->TodoProgress->step_total * 100) . '%'}}"></div>
+                                            <div class="col-9 col-md-8 col-xxl-8 d-flex align-items-center">
+                                                <div class="progress rounded-pill col-12" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                                    <div class="progress-bar bg-success rounded-pill" style="width: {{ ($todo->TodoProgress->step_done /  $todo->TodoProgress->step_total * 100) . '%'}}"></div>
                                                 </div>
                                             </div>
-                                            <div class="col-2 col-md-3 col-xxl-3 text-end">
+                                            <div class="col-3 col-md-4 col-xxl-4 text-end">
                                                 <span>{{ (int)($todo->TodoProgress->step_done /  $todo->TodoProgress->step_total * 100)}}%</span>
                                             </div>
                                         </div>
@@ -116,7 +116,7 @@
                         </div>
                     </div>
                     @if($nonprioritytodos->count() != 0)
-                    <div class="card mt-4 border-0 rounded-4 bg-body-tertiary">
+                    <div class="card mt-4 border-0 rounded-5 bg-trans-secondary">
                         <div class="card-body p-4">
                             <div class="row">
                                 <div class="col-12">
@@ -124,10 +124,10 @@
                                     <p>Psst! I know our recommended task list is awesome,<br><b>but don't leave your other to-dos hanging!</b> Give them some love too</p>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row pt-3">
                             @foreach ($nonprioritytodos as $index => $todo)
                             <div class="col-lg-6 col-xl-6 col-xxl-4 mb-3">
-                                <div class="card p-0 border-0 rounded-4 h-100">
+                                <div class="card p-md-2 border-0 rounded-4 h-100 bg-body">
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="d-flex">
@@ -144,12 +144,12 @@
                                     </div>
                                     <div class="card-footer border-0 bg-body rounded-4 pt-0 py-4">
                                         <div class="row">
-                                            <div class="col-10 col-md-9 col-xxl-9 d-flex align-items-center">
-                                                <div class="progress col-12" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                                    <div class="progress-bar bg-success" style="width: {{ ($todo->TodoProgress->step_done /  $todo->TodoProgress->step_total * 100) . '%'}}"></div>
+                                            <div class="col-9 col-md-8 col-xxl-8 d-flex align-items-center">
+                                                <div class="progress rounded-pill col-12" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                                    <div class="progress-bar bg-success rounded-pill" style="width: {{ ($todo->TodoProgress->step_done /  $todo->TodoProgress->step_total * 100) . '%'}}"></div>
                                                 </div>
                                             </div>
-                                            <div class="col-2 col-md-3 col-xxl-3 text-end">
+                                            <div class="col-3 col-md-4 col-xxl-4 text-end">
                                                 <span>{{ (int)($todo->TodoProgress->step_done /  $todo->TodoProgress->step_total * 100)}}%</span>
                                             </div>
                                         </div>
@@ -195,7 +195,7 @@
                 @endif
                 {{-- todo done --}}
                 @if($donetodos->count() != 0)
-                <div class="card mt-4 border-0 rounded-4 bg-trans-success">
+                <div class="card mt-4 border-0 rounded-5 bg-trans-success">
                     <div class="card-body p-4">
                         <div class="row">
                             <div class="col-12">
@@ -203,10 +203,10 @@
                                 <p>Woo-hoo! You're crushing it! You've tackled that to-do list like a boss<br><b>Keep up the awesome work,</b> and let's show those tasks who's boss!</p>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row pt-3">
                         @foreach ($donetodos as $index => $todo)
                         <div class="col-lg-6 col-xl-6 col-xxl-4 mb-3">
-                            <div class="card p-0 border-0 rounded-4 h-100">
+                            <div class="card p-md-2 border-0 rounded-5 h-100 bg-body">
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="d-flex">
@@ -223,12 +223,12 @@
                                 </div>
                                 <div class="card-footer border-0 bg-body rounded-4 pt-0 py-4">
                                     <div class="row">
-                                        <div class="col-10 col-md-9 col-xxl-9 d-flex align-items-center">
-                                            <div class="progress col-12" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                                <div class="progress-bar bg-success" style="width: {{ ($todo->TodoProgress->step_done /  $todo->TodoProgress->step_total * 100) . '%'}}"></div>
+                                        <div class="col-9 col-md-8 col-xxl-8 d-flex align-items-center">
+                                            <div class="progress rounded-pill col-12" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                                <div class="progress-bar bg-success rounded-pill" style="width: {{ ($todo->TodoProgress->step_done /  $todo->TodoProgress->step_total * 100) . '%'}}"></div>
                                             </div>
                                         </div>
-                                        <div class="col-2 col-md-3 col-xxl-3 text-end">
+                                        <div class="col-3 col-md-4 col-xxl-4 text-end">
                                             <span>{{ (int)($todo->TodoProgress->step_done /  $todo->TodoProgress->step_total * 100)}}%</span>
                                         </div>
                                     </div>
@@ -263,7 +263,7 @@
                 @endif
                 {{-- todo done --}}
                 @if($notdonetodos->count() != 0)
-                <div class="card mt-4 border-0 rounded-4 bg-trans-danger">
+                <div class="card mt-4 border-0 rounded-5 bg-trans-danger">
                     <div class="card-body p-4">
                         <div class="row">
                             <div class="col-12">
@@ -271,10 +271,10 @@
                                 <p>Don't feel too disheartened! <br><b>Tomorrow is another chance to make your dreams a reality.</b> Keep your chin up and let's make the most of what's left of today!</p>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row pt-3">
                         @foreach ($notdonetodos as $index => $todo)
                         <div class="col-lg-6 col-xl-6 col-xxl-4 mb-3">
-                            <div class="card p-0 border-0 rounded-4 h-100">
+                            <div class="card p-md-2 border-0 rounded-4 h-100 bg-body">
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="d-flex">
@@ -291,12 +291,12 @@
                                 </div>
                                 <div class="card-footer border-0 bg-body rounded-4 pt-0 py-4">
                                     <div class="row">
-                                        <div class="col-10 col-md-9 col-xxl-9 d-flex align-items-center">
-                                            <div class="progress col-12" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                                <div class="progress-bar bg-success" style="width: {{ ($todo->TodoProgress->step_done /  $todo->TodoProgress->step_total * 100) . '%'}}"></div>
+                                        <div class="col-9 col-md-8 col-xxl-8 d-flex align-items-center">
+                                            <div class="progress rounded-pill col-12" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                                <div class="progress-bar bg-success rounded-pill" style="width: {{ ($todo->TodoProgress->step_done /  $todo->TodoProgress->step_total * 100) . '%'}}"></div>
                                             </div>
                                         </div>
-                                        <div class="col-2 col-md-3 col-xxl-3 text-end">
+                                        <div class="col-3 col-md-4 col-xxl-4 text-end">
                                             <span>{{ (int)($todo->TodoProgress->step_done /  $todo->TodoProgress->step_total * 100)}}%</span>
                                         </div>
                                     </div>

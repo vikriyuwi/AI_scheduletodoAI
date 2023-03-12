@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Schedule Todo</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+        <link href="{{ url('/assets/css/srgepp.min.css') }}" rel="stylesheet">
         <style>
             :root {
                 --app-height: -webkit-fill-available;
@@ -90,7 +90,7 @@
             } */
 
             .bg-trans-warning {
-                --bs-bg-opacity: 0.1;
+                --bs-bg-opacity: 0.05;
                 background-color: rgba(var(--bs-warning-rgb), var(--bs-bg-opacity)) !important;
             }
 
@@ -110,17 +110,39 @@
             }
 
             .bg-trans-danger {
-                --bs-bg-opacity: 0.1;
+                --bs-bg-opacity: 0.05;
                 background-color: rgba(var(--bs-danger-rgb), var(--bs-bg-opacity)) !important;
             }
 
             .bg-trans-info {
-                --bs-bg-opacity: 0.1;
+                --bs-bg-opacity: 0.05;
                 background-color: rgba(var(--bs-info-rgb), var(--bs-bg-opacity)) !important;
             }
 
             .link {
                 text-decoration: none;
+            }
+
+            .bg-body-tertiary {
+                background-color: #F8F9FA;
+            }
+
+            .bg-body {
+                background-color: #FFFFFF !important;
+            }
+
+            @media (prefers-color-scheme: dark) {
+                :root {
+                    --bs-card-bg: #2B3036 !important;
+                }
+                .bg-body {
+                    background-color: #212529 !important;
+                }
+
+                .bg-body-tertiary {
+                    background-color: #2B3036;
+                    color:white;
+                }
             }
         </style>
         @yield('additional-style')
