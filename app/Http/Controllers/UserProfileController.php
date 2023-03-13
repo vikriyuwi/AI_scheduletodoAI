@@ -29,7 +29,11 @@ class UserProfileController extends Controller
             ]);
     
             if ($request->user_phone != null || $request->user_phone == "") {
-                $data->user_phone = "62".$request->user_phone;
+                if(substr($request->user_phone,0,2) == '08') {
+                    $data->user_phone = "62".substr($request->user_phone,2);
+                } else {
+                    $data->user_phone = "62".$request->user_phone;
+                }
             }
 
             if ($request->user_pronounce != null || $request->user_pronounce == '0') {

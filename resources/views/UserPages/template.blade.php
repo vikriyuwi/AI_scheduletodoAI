@@ -167,14 +167,14 @@
                 </ul>
                 @guest
                 <a href="{{ url('auth/') }}" class="link link-primary fw-bold">
-                    login <i class="fa-solid fa-arrow-right"></i>
+                    Login <i class="fa-solid fa-arrow-right"></i>
                 </a>
                 @else
                 <a href="{{ url('todo') }}" class="btn btn-primary rounded-pill fw-bold me-4">
-                  start manage your task
+                  Manage Todo
                 </a>
                 <a href="{{ url('auth/logout') }}" class="link link-primary fw-bold">
-                  logout <i class="fa-solid fa-arrow-right"></i>
+                  Logout <i class="fa-solid fa-arrow-right"></i>
                 </a>
                 @endauth
               </div>
@@ -201,16 +201,15 @@
                         </div>
                 
                         <div class="col-md-2 mb-3">
-                        <h5>Section</h5>
+                        <h5 class="fw-bold">Support</h5>
                         <ul class="nav flex-column">
                             <li class="nav-item mb-2"><a href="{{ url('/') }}" class="nav-link p-0 text-muted">Home</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
                             <li class="nav-item mb-2"><a href="{{ url('faq') }}" class="nav-link p-0 text-muted">FAQs</a></li>
                         </ul>
                         </div>
                 
                         <div class="col-md-2 mb-3">
-                        <h5>About</h5>
+                        <h5 class="fw-bold">About</h5>
                         <ul class="nav flex-column">
                             <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About us</a></li>
                             <li class="nav-item mb-2"><a href="{{ url('contact-us') }}" class="nav-link p-0 text-muted">Contact us</a></li>
