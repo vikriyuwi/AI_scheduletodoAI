@@ -44,9 +44,9 @@
 </section>
 {{-- intro section --}}
 <section id="about" class="overflow-x-hidden py-5">
-  <div class="container-fluid">
+  <div class="container">
     <div class="row justify-content-between">
-      <div class="col-lg-6 px-5 d-flex align-items-center">
+      <div class="col-lg-6 px-4 px-md-0 d-flex align-items-center">
         <div class="px-lg-5 my-auto">
           <h2 class="mb-4 fw-bolder">
             Just list your task and see what <span class="text-primary">AI</span> can do for you
@@ -65,14 +65,14 @@
 {{-- howto section --}}
 <section id="howto">
   <div class="container p-4">
-    <div class="row">
+    <div class="row my-4 my-md-0">
       <div class="col-12 text-center">
         <h2 class="fw-bolder">Let me show you</h2>
         <p>Let's add a little magic to our productivity <br>
           and let AI be our trusty sidekick in managing tasks!</p>
       </div>
     </div>
-    <div class="row howTo text-start m-5">
+    <div class="row howTo text-start m-4 m-md-5">
       <div class="col-lg-6 mb-4 mb-lg-5">
         <div class="row">
           <div class="col-2 d-flex justify-content-center align-items-center">
