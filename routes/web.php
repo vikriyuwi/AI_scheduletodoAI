@@ -22,6 +22,10 @@ use App\Http\Controllers\UserProfileController;
 
 Route::prefix('/')->group(function() {
     Route::get('/', [UPC::class,'index'])->name('home');
+    Route::get('faq', [UPC::class,'faq'])->name('faq');
+    Route::get('terms-and-privacy', [UPC::class,'termsAndPrivacy'])->name('termsAndPrivacy');
+    Route::get('contact-us', [UPC::class,'contactUs'])->name('contactUs');
+    Route::post('contact-us', [UPC::class,'contactUsStore'])->name('contactUsStore');
     Route::resource('todo', TodoManagementController::class);
     Route::post('/todo/update-step-status',[TodoManagementController::class,'updateStepStatus']);
     Route::resource('step', StepManagementController::class);
