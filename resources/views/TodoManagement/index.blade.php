@@ -131,7 +131,7 @@
                 </div>
                 {{-- priority todo --}}
                 @if($prioritytodos->count() != 0)
-                    <div class="card mt-4 border-0 rounded-5 bg-trans-primary">
+                    <div class="card mt-4 border-0 rounded-5 bg-primary text-white">
                         <div class="card-body p-4">
                             <div class="row">
                                 <div class="col-12">
@@ -142,7 +142,7 @@
                             <div class="row pt-3">
                             @foreach ($prioritytodos as $index => $todo)
                             <div class="col-lg-6 col-xl-6 col-xxl-4 mb-3">
-                                <div class="card p-md-2 border-0 rounded-4 h-100 bg-body">
+                                <div class="card p-md-2 border-0 rounded-4 h-100 bg-body text-dark">
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="d-flex">

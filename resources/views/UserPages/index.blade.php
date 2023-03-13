@@ -1,76 +1,220 @@
-@extends('../template')
+@extends('UserPages.template')
 
 @section('main-content')
-<section id="updateinfo">
-    <div class="container pt-5">
-        @if (session('message'))
-            <div class="alert alert-{{ session('messageType') }} d-flex align-items-center alert-dismissible fade show" role="alert">
-                @if (session('type') == 'success')
-                    <i class="fa-solid fa-circle-check"></i>
-                @else
-                    <i class="fa-solid fa-circle-exclamation"></i>
-                @endif
-                <div>
-                    {{ ' '.session('message') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            </div>
-        @endif
-        <div class="row pt-5">
-            <div class="col-md-9">
-                <h2>Todo</h2>
-                @if($todos->count() != 0)
-                    @foreach ($todos as $index => $todo) 
-                    <div class="row p-2">
-                        <div class="card col-12 p-0">
-                            <div class="card-header">
-                                Todo
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $todo->todo_name }}</h5>
-                                <p class="card-text">{{ $todo->todo_note }}</p>
-                                <div class="row">
-                                    <div class="col-10 col-md-11">
-                                        <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                            <div class="progress-bar bg-success" style="width: {{ ($todo->TodoProgress->todo_progress /  $todo->TodoProgress->todo_total * 100) . '%'}}"></div>
-                                        </div>
-                                    </div>
-                                    <div class="col-2 col-md-1 text-end">
-                                        <span>{{ (int)($todo->TodoProgress->todo_progress /  $todo->TodoProgress->todo_total * 100)}}%</span>
-                                    </div>
-                                </div>     
-                                
-                                <hr>
-                                <a href="#" class="btn btn-primary">Do task</a>
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
-                @else
-                    <div class="row p-2">
-                        <div class="card col-12 p-0">
-                            <div class="card-body p-5">
-                                <h5 class="card-title">You are not having any todo</h5>
-                                <p class="card-text">You can assign your todo in the button bellow.</p>
-                                <a href="{{ url('/todo/create') }}" class="btn btn-success"><i class="fa-solid fa-plus"></i> add todo</a>
-                            </div>
-                        </div>
-                    </div>
-                @endif
-            </div>
-            <div class="col-md-3">
-                <h2>Profile</h2>
-                <div class="row">
-                    <div class="col-12">
-                        <img src="{{ $userData->user_picture }}" class="rounded-circle" alt="{{ $userData->user_name }}"><br><br>
-                        <b>{{ $userData->user_name }}</b><br>
-                        <span>
-                            {{ $userData->user_gmail }}
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!-- jumbotron -->
+<div class="container" id="jumbotron">
+    <div class="row d-none d-lg-block">
+      <div class="col-8 w1">
+        <img src="{{ url('assets/element/widget1.png') }}" alt="widget1">
+      </div>
     </div>
-</section>
+    <div class="row">
+      <div class="col-3 w2 d-none d-lg-block">
+        <img src="{{ url('assets/element/widget2.png') }}" alt="widget2">
+      </div>
+      <div class="col-6 jumbotron text-center d-none d-lg-block">
+        <h1>Get more done<br>in less time.</h1>
+        <p>AI will help you with smart recommendation<br>to level up your productivity</p>
+        <div class="row d-flex justify-content-center align-items-center">
+          <div class="col-6 text-end pe-3">
+            <a href="{{ url('todo') }}" class="btn myButton">start manage your task</a>
+          </div>
+          <div class="col-6 text-center pe-5">
+            <a href="#about">learn more</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-3 w5 d-none d-lg-block">
+        <img src="{{ url('assets/element/widget5.png') }}" alt="widget5">
+      </div>
+    </div>
+    <div class="row d-lg-none mt-5">
+      <div class="col-12 jumbotron text-center my-5 pt-5">
+        <h1>Get more done<br>in less time.</h1>
+        <p>AI will help you with smart recommendation<br>to level up your productivity</p>
+        <div class="row">
+          <div class="col-6 text-end">
+            <button class="btn btn-primary rounded-pill">start manage your task</button>
+          </div>
+          <div class="col-6 text-start">
+            <a href="#">learn more</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6 w3 d-none d-lg-block">
+        <img src="{{ url('assets/element/widget3.png') }}" alt="widget3">
+      </div>
+      <div class="col-6 w4 d-none d-lg-block">
+        <img src="{{ url('assets/element/widget4.png') }}" alt="widget4">
+      </div>
+    </div>
+  </div>
+  
+  <!-- section 2 -->
+  <div class="container">
+    <div class="row d-flex justify-content-between">
+      <div class="col-lg-5 mt-5">
+        <h2 class="mb-4">
+          Just list your task and see what AI <br> can do for you
+        </h2>
+        <p>This website is using K-Means clustering to generate
+          clustering for your todo list so AI will choose some of
+          your task to be priorities recommendations</p>
+      </div>
+      <div class="col-lg-6 s2p mb-5">
+        <img src="{{ url('assets/element/section2_picture.png') }}" alt="widget_section2">
+      </div>
+    </div>
+  </div>
+
+  <!-- section 3 -->
+  <div class="container" id="howto">
+    <div class="row">
+      <div class="col-12 jumbotron text-center">
+        <h2>Let me show you</h2>
+        <p>Let's add a little magic to our productivity <br>
+          and let AI be our trusty sidekick in managing tasks!</p>
+        <div class="row howTo text-start my-5">
+          <div class="col-lg-6 ">
+            <div class="row">
+              <div class="col-2 d-flex justify-content-center align-items-center">
+                1
+              </div>
+              <div class="col-10">
+                <h5>
+                  Specify your todo
+                </h5>
+                <p>
+                  Let's tackle the "Epic Adventure" task together! Complete the todo details such as name, deadline, and difficulty level
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="row">
+              <div class="col-2 d-flex justify-content-center align-items-center">
+                2
+              </div>
+              <div class="col-10">
+                <h5>
+                  List all step on the task                  
+                </h5>
+                <p>
+                  We gotta get organized and create a list of every step(s) that needs to be done. Don't forget to take breaks to avoid burnout.                  
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row howTo text-start my-5">
+          <div class="col-lg-6">
+            <div class="row">
+              <div class="col-2 d-flex justify-content-center align-items-center">
+                3
+              </div>
+              <div class="col-10">
+                <h5>
+                  Let AI works                  
+                </h5>
+                <p>
+                  Get ready for some AI-powered productivity fun! AI is here to save the day by recommending which task to prioritize first. No more struggling                  
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="row">
+              <div class="col-2 d-flex justify-content-center align-items-center">
+                4
+              </div>
+              <div class="col-10">
+                <h5>
+                  Monitoring                  
+                </h5>
+                <p>
+                  Let's give AI a front-row seat to our productivity journey and show it how it's done! As we complete each step, we'll update our progress                  
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- section 4 -->
+  <div class="container pb-5">
+    <div class="row">
+      <div class="col-12 card4 d-flex justify-content-center align-items-center p-3">
+        <div class="row">
+          <div class="col-lg-12 text-center py-5">
+            <h2>So, are you ready?</h2>
+            <p>Let's get that to-do list sorted and make it look like a work of art.</p>
+            <div class="row d-flex justify-content-center align-items-center">
+              <div class="col-6 text-end pe-3">
+                <a class="btn myButton2" href="{{ url('todo') }}">start manage your task</a>
+              </div>
+              <div class="col-6 text-center">
+                <a href="#about">learn more</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- footer -->
+  <div class="myFooter" id="about">
+    <div class="container">
+      <footer class="py-5">
+        <div class="row">
+          <div class="col-6 col-md-2 mb-3">
+            <ul class="nav flex-column">
+              <a href="/" class="d-flex align-items-center mb-3 link-dark text-decoration-none">
+                <img src="Srgepp_logo.png" alt="Logo" height="70" class="d-inline align-text-top">
+              </a>
+              <p class="text-muted">&copy; 2023</p>
+            </ul>
+          </div>
+    
+          <div class="col-6 col-md-2 mb-3">
+            <h5>Section</h5>
+            <ul class="nav flex-column">
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
+            </ul>
+          </div>
+    
+          <div class="col-6 col-md-2 mb-3">
+            <h5>Section</h5>
+            <ul class="nav flex-column">
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
+            </ul>
+          </div>
+    
+          <div class="col-md-5 offset-md-1 mb-3">
+            <form>
+              <h5>Subscribe to our newsletter</h5>
+              <p>Monthly digest of what's new and exciting from us.</p>
+              <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+                <label for="newsletter1" class="visually-hidden">Email address</label>
+                <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
+                <button class="btn myButton" type="button">Subscribe</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
 @endsection

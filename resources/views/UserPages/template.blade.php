@@ -13,117 +13,127 @@
             :root {
                 --app-height: -webkit-fill-available;
             }
-            body {
-                font-family: 'Poppins';
-            }
             .navbar-nav .nav-item:not(:last-child) {
                 padding-right: 2rem;
             }
-            .scrollable .status-card {
-                /* min-height: 300px; */
-                min-width: 300px;
+            body{
+                font-family: 'Poppins';
             }
-            .card-group.card-group-scroll {
-                overflow-x: auto;
-                flex-wrap: nowrap;
+            body a, .nav-link{
+                font-size: 18px;
             }
 
-            .card-group.card-group-scroll .status-card {
-                border: none;
-                padding: 0.4rem;
-                box-sizing: border-box;
+            body a{
+                color: #0102A1;
             }
 
-            .vh-100 {
-                min-height: var(--app-height);
+            body h1{
+                font-size: 64px;
+                font-weight: 700;
             }
 
-            #loading-screen {
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                z-index: 1500;
+            body h2{
+                font-size: 48px;
+                font-weight: 700;
             }
 
-            /* loading animation */
-            .spinner {
-                width: 40px;
-                height: 40px;
-
-                position: relative;
-                margin: 100px auto;
+            body p{
+                font-weight: 300;
             }
 
-            .double-bounce1, .double-bounce2 {
-                width: 100%;
-                height: 100%;
-                border-radius: 50%;
-                opacity: 0.6;
-                position: absolute;
-                top: 0;
-                left: 0;
-                
-                -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
-                animation: sk-bounce 2.0s infinite ease-in-out;
+            body h5{
+                font-weight: 500;
             }
 
-            .double-bounce2 {
-                -webkit-animation-delay: -1.0s;
-                animation-delay: -1.0s;
+            .jumbotron{
+                margin-top: -64px
             }
 
-            @-webkit-keyframes sk-bounce {
-                0%, 100% { -webkit-transform: scale(0.0) }
-                50% { -webkit-transform: scale(1.0) }
+            .w1 img{
+                width: 507px;
+                margin-top:-45px;
+                margin-left: 64px;
+            }
+            .w2 img{
+                width: 450px;
+                margin-left: -112px;
+                margin-top: -112px;
             }
 
-            @keyframes sk-bounce {
-                0%, 100% { 
-                    transform: scale(0.0);
-                    -webkit-transform: scale(0.0);
-                } 50% { 
-                    transform: scale(1.0);
-                    -webkit-transform: scale(1.0);
-                }
+            .w3 img{
+                width: 507px;
+                margin-top:-126px;
+                margin-right:-126px;
             }
 
-            .bg-theme {
-                background-color: var(--bs-body-bg);
+            .w4 img{
+                width: 507px;
+                margin-top:-186px;
+                margin-left:126px;
             }
 
-            /* #loading-screen {
-                background-color: var(--bs-body-bg);
-            } */
-
-            .bg-trans-warning {
-                --bs-bg-opacity: 0.05;
-                background-color: rgba(var(--bs-warning-rgb), var(--bs-bg-opacity)) !important;
+            .w5 img{
+                width: 450px;
+                margin-left: -112px;
+                margin-top: -186px;
             }
 
-            .bg-trans-primary {
-                --bs-bg-opacity: 0.03;
-                background-color: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) !important;
+            .s2p img{
+                width: 707px;
             }
 
-            .bg-trans-secondary {
-                --bs-bg-opacity: 0.08;
-                background-color: rgba(var(--bs-secondary-rgb), var(--bs-bg-opacity)) !important;
+            .howTo .col-2{
+                border-radius: 18px;
+                background-color: #FE8B11;
+                color: #000000;
+                font-weight: 500;
+                width: 50px;
+                height: 50px;
             }
 
-            .bg-trans-success {
-                --bs-bg-opacity: 0.1;
-                background-color: rgba(var(--bs-success-rgb), var(--bs-bg-opacity)) !important;
+            .myButton{
+                background-color: #0102A1;
+                color: #ffffff;
+                border-radius: 32px;
+                font-weight: 500;
             }
 
-            .bg-trans-danger {
-                --bs-bg-opacity: 0.05;
-                background-color: rgba(var(--bs-danger-rgb), var(--bs-bg-opacity)) !important;
+            .myButton:hover{
+                background-color: #FE8B11;
+                color: #000000;
+                border-radius: 32px;
             }
 
-            .bg-trans-info {
-                --bs-bg-opacity: 0.05;
-                background-color: rgba(var(--bs-info-rgb), var(--bs-bg-opacity)) !important;
+            .card4{
+                height: 360px;
+                background-color: #0102A1;
+                border-radius: 24px;
+                color: #ffffff;
+            }
+
+            .card4 a{
+                color: #ffffff;
+            }
+
+            .myButton2{
+                background-color: #FE8B11;
+                color: #000000;
+                border-radius: 32px;
+                font-weight: 500;
+            }
+
+            .myButton2:hover{
+                color: #0102A1;
+                background-color: #ffffff;
+            }
+
+            .myFooter{
+                background-color: #FAFAFF;
+            }
+
+            #newsletter1{
+                border-radius: 32px;
+                margin-right: -40px;
             }
 
             .link {
@@ -143,53 +153,6 @@
                 border: none;
             }
         </style>
-        {{-- <style>
-            @media (prefers-color-scheme: dark) {
-                :root {
-                    --bs-card-bg: #2B3036 !important;
-                    --bs-primary: #2B3036 !important;
-                }
-
-                .bg-body {
-                    background-color: #212529 !important;
-                    color:white;
-                }
-
-                .bg-body-tertiary {
-                    background-color: #2B3036;
-                    color:white;
-                }
-
-                [class="card"] {
-                    background-color: #212529 !important;
-                }
-
-                .form-control {
-                    background-color: #2B3036;
-                    border: none;
-                    color: white;
-                }
-
-                .form-control:focus {
-                    background-color: #2B3036;
-                    color: white;
-                }
-
-                .modal-content {
-                    background-color: #212529;
-                    border: none;
-                    color: white;
-                }
-
-                .button-close {
-                    color: white !important;
-                }
-
-                .link .link-primary {
-                    color: var(--bs-primary);
-                }
-            }
-        </style> --}}
         @yield('additional-style')
     </head>
     <body class="bg-body-tertiary">
@@ -207,9 +170,9 @@
             </div>
         </section>
         <div class="container py-3 sticky-top bg-body-tertiary">
-            <nav class="navbar navbar-expand-md">
+            <nav class="navbar navbar-expand-lg">
               <div class="container-fluid">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="#">
                   <img src="{{ url('assets/logo/Srgepp_logo_text_blue.png') }}" alt="Logo" height="24" class="d-inline align-text-top">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="true" aria-label="Toggle navigation">
@@ -218,15 +181,27 @@
                 <div class="navbar-collapse collapse show" id="navbarText" style="">
                   <ul class="navbar-nav ms-auto me-auto mb-2 mb-lg-0 pe-5">
                     <li class="nav-item me-3">
-                      <a href="{{ url('todo') }}" class="nav-link active" aria-current="page">Todo Management</a>
+                      <a href="#jumbotron" class="nav-link active" aria-current="page">Home</a>
                     </li>
                     <li class="nav-item me-3">
-                        <a href="{{ url('profile') }}" class="nav-link" aria-current="page">Profile</a>
-                      </li>
+                        <a href="#howto" class="nav-link" aria-current="page">How to</a>
+                    </li>
+                    <li class="nav-item me-3">
+                        <a href="#about" class="nav-link" aria-current="page">About</a>
+                    </li>
                   </ul>
-                  <a href="{{ url('auth/logout') }}" class="link link-primary fw-bold">
-                      logout <i class="fa-solid fa-arrow-right"></i>
+                  @guest
+                  <a href="{{ url('auth/') }}" class="link link-primary fw-bold">
+                      login <i class="fa-solid fa-arrow-right"></i>
                   </a>
+                  @else
+                  <a href="{{ url('todo') }}" class="btn btn-primary rounded-pill fw-bold me-4">
+                    start manage your task
+                  </a>
+                  <a href="{{ url('auth/logout') }}" class="link link-primary fw-bold">
+                    logout <i class="fa-solid fa-arrow-right"></i>
+                  </a>
+                  @endauth
                 </div>
               </div>
             </nav>
