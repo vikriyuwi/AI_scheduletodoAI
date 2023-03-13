@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('user_pronounce',256)->nullable();
             $table->string('user_phone',256)->nullable();
             // new
-            $table->integer('user_phone_verification')->default(1); 
+            $table->integer('user_phone_verification')->default(1);
             $table->string('user_token',256);
             // new
             $table->integer('user_active')->default(1);

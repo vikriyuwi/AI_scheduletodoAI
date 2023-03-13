@@ -156,13 +156,13 @@
               <div class="navbar-collapse collapse" id="navbarText" style="">
                 <ul class="navbar-nav ms-auto me-auto mb-2 mb-lg-0 pe-5">
                   <li class="nav-item me-3">
-                    <a href="#header" class="nav-link active" aria-current="page">Home</a>
+                    <a href="{{ Request::url() === url('/') ? '#header' : url('/').'#header' }}" class="nav-link active" aria-current="page">Home</a>
                   </li>
                   <li class="nav-item me-3">
-                      <a href="#howto" class="nav-link" aria-current="page">How to</a>
+                      <a href="{{ Request::url() === url('/') ? '#howto' : url('/').'#howto' }}" class="nav-link" aria-current="page">How to</a>
                   </li>
                   <li class="nav-item me-3">
-                      <a href="#about" class="nav-link" aria-current="page">About</a>
+                      <a href="{{ Request::url() === url('contact-us') ? '#' : url('contact-us') }}" class="nav-link" aria-current="page">Contact Us</a>
                   </li>
                 </ul>
                 @guest
