@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Schedule Todo</title>
+        <title>Srgepp - Get more done in less time</title>
         {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous"> --}}
         <link href="{{ url('/assets/css/srgepp.min.css') }}" rel="stylesheet">
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,15 +13,12 @@
         <meta property="og:image" content="{{ url('assets/logo/thumbnail.png') }}" />
         <meta name="keywords" content="srgepp,sregep,ai todo"/>
         <meta name="author" content="Fikriyuwi | Vinchen Amigo" />
-        <meta name="title" content="Sregep - Get more done in less time" />
+        <meta name="title" content="Srgepp - Get more done in less time" />
         <meta name="description" content="organizing your priorities has never been easier - effortlessly input your tasks and seamlessly track their progress all in one place.">
         <meta name="theme-color" content="#F8F9FA">
 
         {{-- icon --}}
-        <link rel="apple-touch-icon" sizes="180x180" href="{{ url('favicon/apple-touch-icon.png') }}">
-        <link rel="icon" type="image/png" sizes="32x32" href="{{ url('favicon/favicon-32x32.png') }}">
-        <link rel="icon" type="image/png" sizes="16x16" href="{{ url('favicon/favicon-16x16.png') }}">
-        <link rel="manifest" href="{{ url('favicon/site.webmanifest') }}">
+        <link rel="icon" type="image/png" href="{{ url('assets/logo/Srgepp_logo.png') }}">
         <style>
             :root {
                 --app-height: -webkit-fill-available;
@@ -219,31 +216,35 @@
                 </div>
             </div>
         </section>
-        <div class="container py-3 sticky-top bg-body-tertiary">
-            <nav class="navbar navbar-expand-md">
-              <div class="container-fluid">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                  <img src="{{ url('assets/logo/Srgepp_logo_text_blue.png') }}" alt="Logo" height="24" class="d-inline align-text-top">
+        <nav class="navbar navbar-expand-lg py-3 sticky-top bg-body-tertiary">
+            <div class="container">
+              <a class="navbar-brand" href="{{ url('/') }}">
+                <img src="{{ url('assets/logo/Srgepp_logo_text_blue.png') }}" alt="Logo" height="24" class="d-inline align-text-top">
+              </a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="navbar-collapse collapse" id="navbarText" style="">
+                <ul class="navbar-nav ms-auto me-auto mb-2 mb-lg-0 pe-5">
+                  <li class="nav-item me-3">
+                    <a href="{{url('todo')}}" class="nav-link active" aria-current="page">Manage todo</a>
+                  </li>
+                  <li class="nav-item me-3">
+                      <a href="{{url('profile')}}" class="nav-link" aria-current="page">Profile</a>
+                  </li>
+                </ul>
+                @guest
+                <a href="{{ url('auth/') }}" class="link link-primary fw-bold">
+                    login <i class="fa-solid fa-arrow-right"></i>
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="true" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse show" id="navbarText" style="">
-                  <ul class="navbar-nav ms-auto me-auto mb-2 mb-lg-0 pe-5">
-                    <li class="nav-item me-3">
-                      <a href="{{ url('todo') }}" class="nav-link active" aria-current="page">Todo Management</a>
-                    </li>
-                    <li class="nav-item me-3">
-                        <a href="{{ url('profile') }}" class="nav-link" aria-current="page">Profile</a>
-                      </li>
-                  </ul>
-                  <a href="{{ url('auth/logout') }}" class="link link-primary fw-bold">
-                      logout <i class="fa-solid fa-arrow-right"></i>
-                  </a>
-                </div>
+                @else
+                <a href="{{ url('auth/logout') }}" class="link link-primary fw-bold">
+                  logout <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                @endauth
               </div>
-            </nav>
-        </div>
+            </div>
+        </nav>
         <!-- for content -->
         @yield('main-content')
         <!-- Font Awesome Icons -->

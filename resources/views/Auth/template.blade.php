@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Schedule Todo</title>
+        <title>Srgepp - Get more done in less time</title>
         <link href="{{ url('/assets/css/srgepp.min.css') }}" rel="stylesheet">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,15 +12,12 @@
         <meta property="og:image" content="{{ url('assets/logo/thumbnail.png') }}" />
         <meta name="keywords" content="srgepp,sregep,ai todo"/>
         <meta name="author" content="Fikriyuwi | Vinchen Amigo" />
-        <meta name="title" content="Sregep - Get more done in less time" />
+        <meta name="title" content="Srgepp - Get more done in less time" />
         <meta name="description" content="organizing your priorities has never been easier - effortlessly input your tasks and seamlessly track their progress all in one place.">
         <meta name="theme-color" content="#0102A1">
 
         {{-- icon --}}
-        <link rel="apple-touch-icon" sizes="180x180" href="{{ url('favicon/apple-touch-icon.png') }}">
-        <link rel="icon" type="image/png" sizes="32x32" href="{{ url('favicon/favicon-32x32.png') }}">
-        <link rel="icon" type="image/png" sizes="16x16" href="{{ url('favicon/favicon-16x16.png') }}">
-        <link rel="manifest" href="{{ url('favicon/site.webmanifest') }}">
+        <link rel="icon" type="image/png" href="{{ url('assets/logo/Srgepp_logo.png') }}">
         <style>
             body {
                 font-family: 'Poppins';
