@@ -173,8 +173,8 @@
         <div class="row">
           <div class="col-6 col-md-2 mb-3">
             <ul class="nav flex-column">
-              <a href="/" class="d-flex align-items-center mb-3 link-dark text-decoration-none">
-                <img src="Srgepp_logo.png" alt="Logo" height="70" class="d-inline align-text-top">
+              <a href="{{ url('/') }}" class="d-flex align-items-center mb-3 link-dark text-decoration-none">
+                <img src="{{ url('assets/logo/icon.png') }}" alt="Logo" height="70" class="d-inline align-text-top">
               </a>
               <p class="text-muted">&copy; 2023</p>
             </ul>
