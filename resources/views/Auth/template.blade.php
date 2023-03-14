@@ -21,6 +21,7 @@
         <style>
             body {
                 font-family: 'Poppins';
+                background-color: #ffffff;
             }
             .navbar-nav .nav-item:not(:last-child) {
                 padding-right: 2rem;
@@ -31,7 +32,7 @@
             }
         </style>
     </head>
-    <body class="bg-primary">
+    <body>
         <!-- for content -->
         @yield('main-content')
         <!-- Font Awesome Icons -->
