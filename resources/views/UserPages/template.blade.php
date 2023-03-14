@@ -128,6 +128,41 @@
                 background-color: #F8F9FA;
                 border: none;
             }
+
+            #loading-screen {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 1500;
+            }
+
+            /* loading animation */
+            .spinner {
+                width: 40px;
+                height: 40px;
+
+                position: relative;
+                margin: 100px auto;
+            }
+
+            .double-bounce1, .double-bounce2 {
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+                opacity: 0.6;
+                position: absolute;
+                top: 0;
+                left: 0;
+                
+                -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+                animation: sk-bounce 2.0s infinite ease-in-out;
+            }
+
+            .double-bounce2 {
+                -webkit-animation-delay: -1.0s;
+                animation-delay: -1.0s;
+            }
         </style>
         @yield('additional-style')
     </head>
