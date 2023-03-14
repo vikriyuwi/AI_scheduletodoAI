@@ -3,16 +3,27 @@
 @section('main-content')
 {{-- header section --}}
 <section id="header" class="w-100 overflow-x-hidden">
-  <div class="container-fluid py-5 py-md-0" id="header">
+  <div class="container-fluid py-md-0" id="header">
+    <div class="row">
+      <div class="col-1 d-block d-sm-none"></div>
+      <div class="col-5 d-md-none">
+        <div class="mt-3 mt-md-0"></div>
+        <img src="{{ url('assets/element/widget1.png') }}" alt="widget1">
+      </div>
+      <div class="col-1 d-md-none"></div>
+      <div class="col-4 col-sm-4 d-md-none">
+        <img src="{{ url('assets/element/widget2.png') }}" alt="widget2">
+      </div>
+    </div>
     <div class="row pt-5 pt-md-0">
-      <div class="col-md-4"></div>
+      <div class="col-md-4 d-none d-md-block"></div>
       <div class="col-md-3 d-none d-md-block">
         <img src="{{ url('assets/element/widget1.png') }}" alt="widget1">
       </div>
     </div>
     <div class="row">
       <div class="col-md-1"></div>
-      <div class="col-md-2 pt-5 d-none d-md-block">
+      <div class="col-md-2 pt-0 pt-md-5 d-none d-md-block">
         <img src="{{ url('assets/element/widget2.png') }}" alt="widget1">
       </div>
       <div class="col-md-6 text-center" style="z-index: 10">
@@ -31,13 +42,29 @@
       </div>
     </div>
     <div class="row pb-5 pb-md-0">
-      <div class="col-md-2"></div>
+      <div class="col-md-2 d-none d-md-block"></div>
       <div class="col-md-4 d-none d-md-block">
-        <img src="{{ url('assets/element/widget3.png') }}" alt="widget1">
+        <img src="{{ url('assets/element/widget3.png') }}" alt="widget3">
       </div>
-      <div class="col-md-1"></div>
+      <div class="col-md-1 d-none d-md-block"></div>
       <div class="col-md-3 pt-4 d-none d-md-block">
-        <img src="{{ url('assets/element/widget4.png') }}" alt="widget1">
+        <img src="{{ url('assets/element/widget4.png') }}" alt="widget4">
+      </div>
+      <div class="col-4 d-md-none">
+        <img src="{{ url('assets/element/widget5.png') }}" alt="widget5">
+      </div>
+      <div class="col-8 d-md-none">
+        <div class="row">
+          <div class="col-6"></div>
+          <div class="col-6">
+            <img src="{{ url('assets/element/widget4.png') }}" alt="widget4">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8">
+            <img src="{{ url('assets/element/widget3.png') }}" alt="widget3">
+          </div>
+        </div>
       </div>
     </div>
   </div>

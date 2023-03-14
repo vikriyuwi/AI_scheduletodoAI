@@ -115,6 +115,9 @@
             .link {
                 text-decoration: none;
             }
+            .link:hover {
+                text-decoration: underline !important;
+            }
 
             .bg-body-tertiary {
                 background-color: #F8F9FA;
