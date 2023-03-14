@@ -1,6 +1,25 @@
 @extends('UserPages.template')
 
 @section('main-content')
+{{-- announcement modal --}}
+<div class="modal fade" id="modal-announce" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content rounded-5">
+          <div class="modal-header">
+              <h1 class="modal-title fs-5 fw-bold px-5 display-1" id="staticBackdropLabel">Announcement</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body p-5" id="modalBody">
+              <h1 class="fw-bold">Give away time! &#10024</h1>
+              <h4 class="my-4">We are absolutely thrilled to announce that, as a way of saying thanks to our awesome beta testers, we will be giving away some seriously <b class="text-primary">cool prizes</b> as our appreciation for some loyal beta testers (based on who frequently use the website, provide constructive feedback, and lucky draw)!</h4>
+              <p class="text-sm">The winners will be announced on our website and social media platforms at <b>Apr 8, 2023</b>. Good luck! &#127881</p>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+      </div>
+  </div>
+</div>
 {{-- header section --}}
 <section id="header" class="w-100 overflow-x-hidden">
   <div class="container-fluid py-md-0" id="header">
@@ -185,4 +204,11 @@
     </div>
   </div>
 </section>
+@endsection
+
+@section('additionalScript')
+<script>
+  const modalAnnounce = new bootstrap.Modal('#modal-announce');
+  modalAnnounce.show();
+</script>
 @endsection
