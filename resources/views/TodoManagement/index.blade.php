@@ -142,7 +142,7 @@
                             <div class="row pt-3">
                             @foreach ($prioritytodos as $index => $todo)
                             <div class="col-lg-6 col-xl-6 col-xxl-4 mb-3">
-                                <div class="card p-md-2 border-0 rounded-4 h-100 bg-body text-dark">
+                                <div class="card p-md-2 border-0 rounded-5 h-100 bg-body text-dark">
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="d-flex">
@@ -208,7 +208,7 @@
                             <div class="row pt-3">
                             @foreach ($nonprioritytodos as $index => $todo)
                             <div class="col-lg-6 col-xl-6 col-xxl-4 mb-3">
-                                <div class="card p-md-2 border-0 rounded-4 h-100 bg-body">
+                                <div class="card p-md-2 border-0 rounded-5 h-100 bg-body">
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="d-flex">
@@ -269,7 +269,7 @@
                             <div class="card-body p-5">
                                 <h5 class="card-title">You are not having any thing to do</h5>
                                 <p class="card-text">You can assign your todo in the button bellow.</p>
-                                <a href="{{ url('todo/create') }}" class="btn btn-success"><i class="fa-solid fa-plus"></i> add todo</a>
+                                <button class="btn btn-success rounded-pill" data-bs-toggle="modal" data-bs-target="#modal-todo-add"><i class="fa-solid fa-plus"></i> add todo</button>
                             </div>
                         </div>
                     </div>
@@ -414,7 +414,7 @@
             <div class="col-md-3" style="z-index:1000">
                 <div class="row sticky-top">
                     <div class="col-12 p-5">
-                        <a href="{{ url('/todo/create') }}" class="btn my-5 btn-success rounded-pill d-none" id="addNewButton"><i class="fa-solid fa-plus"></i> add todo</a>
+                        <button class="btn my-5 btn-success rounded-pill d-none" id="addNewButton"  data-bs-toggle="modal" data-bs-target="#modal-todo-add"><i class="fa-solid fa-plus"></i> add todo</button>
                         <h2>Profile</h2>
                         <img src="{{ $userData->user_picture }}" class="rounded-circle" alt="{{ $userData->user_name }}"><br><br>
                         <b>{{ $userData->user_name }}</b><br>
