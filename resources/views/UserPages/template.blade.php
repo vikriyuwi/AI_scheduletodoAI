@@ -104,12 +104,12 @@
             }
 
             .myFooter{
-                background-color: #FAFAFF;
+                background-color: #FAFAFa;
             }
 
             #newsletter1{
                 border-radius: 32px;
-                margin-right: -40px;
+                margin-right: -114px;
             }
 
             .link {
@@ -188,8 +188,8 @@
               <a class="navbar-brand" href="#">
                 <img src="{{ url('assets/logo/Srgepp_logo_text_blue.png') }}" alt="Logo" height="24" class="d-inline align-text-top">
               </a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+              <button class="navbar-toggler border-0 rounded-pill" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa-solid fa-ellipsis-vertical"></i>
               </button>
               <div class="navbar-collapse collapse" id="navbarText" style="">
                 <ul class="navbar-nav ms-auto me-auto mb-2 mb-lg-0 pe-5">
@@ -225,7 +225,7 @@
         </section>
         {{-- footer section --}}
         <section id="footer">
-            <div class="myFooter">
+            <div class="bg-secondary bg-opacity-25">
                 <div class="container">
                     <footer class="py-5">
                     <div class="row">
