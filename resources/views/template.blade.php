@@ -247,6 +247,7 @@
                     login <i class="fa-solid fa-arrow-right"></i>
                 </a>
                 @else
+                <button class="btn me-3 btn-success rounded-pill d-none" id="addNewButton"  data-bs-toggle="modal" data-bs-target="#modal-todo-add"><i class="fa-solid fa-plus"></i> add todo</button>
                 <div class="nav-item dropdown">
                     <a class="nav-link btn btn-secondary rounded-pill fw-bold text-white d-flex" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <div class="nav-profile p-1">

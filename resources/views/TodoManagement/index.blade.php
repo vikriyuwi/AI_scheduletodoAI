@@ -119,16 +119,16 @@
             </div>
         </div>
         @endif
+        <div class="row my-3">
+            <div class="col-md-6">
+                <h2 class="fw-bold">Hi,<br>{{ $userData->user_name }}</h2>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <button class="btn btn-success rounded-pill" id="addNewButtonPrimary" data-bs-toggle="modal" data-bs-target="#modal-todo-add"><i class="fa-solid fa-plus"></i> add todo</button>
+            </div>
+        </div>
         <div class="row">
-            <div class="col-md-9 p-md-5 rounded-5 bg-body">
-                <div class="row">
-                    <div class="col-md-6">
-                        <h1 class="">Hi,<br>{{ $userData->user_name }}</h1>
-                    </div>
-                    <div class="col-md-6 text-md-end">
-                        <button class="btn btn-success rounded-pill" id="addNewButtonPrimary" data-bs-toggle="modal" data-bs-target="#modal-todo-add"><i class="fa-solid fa-plus"></i> add todo</button>
-                    </div>
-                </div>
+            <div class="col-md-12 p-md-5 rounded-5 bg-body">
                 {{-- priority todo --}}
                 @if($prioritytodos->count() != 0)
                     <div class="card mt-4 border-0 rounded-5 bg-primary text-white">
@@ -265,8 +265,8 @@
                     @endif
                 @else
                     <div class="row p-2">
-                        <div class="card col-12 p-0">
-                            <div class="card-body p-5">
+                        <div class="card col-12 p-0 rounded-5">
+                            <div class="card-body rounded-5 p-5">
                                 <h5 class="card-title">You are not having any thing to do</h5>
                                 <p class="card-text">You can assign your todo in the button bellow.</p>
                                 <button class="btn btn-success rounded-pill" data-bs-toggle="modal" data-bs-target="#modal-todo-add"><i class="fa-solid fa-plus"></i> add todo</button>
@@ -410,19 +410,6 @@
                     </div>
                 </div>
                 @endif
-            </div>
-            <div class="col-md-3" style="z-index:1000">
-                <div class="row sticky-top">
-                    <div class="col-12 p-5">
-                        <button class="btn my-5 btn-success rounded-pill d-none" id="addNewButton"  data-bs-toggle="modal" data-bs-target="#modal-todo-add"><i class="fa-solid fa-plus"></i> add todo</button>
-                        <h2>Profile</h2>
-                        <img src="{{ $userData->user_picture }}" class="rounded-circle" alt="{{ $userData->user_name }}"><br><br>
-                        <b>{{ $userData->user_name }}</b><br>
-                        <span>
-                            {{ $userData->user_gmail }}
-                        </span>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
