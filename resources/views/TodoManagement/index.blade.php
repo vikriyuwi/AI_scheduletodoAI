@@ -523,7 +523,7 @@
             let inputStepItem = $('#step-data-form input');
             let textareaStepItem = $('#step-data-form textarea');
 
-            if(i > 0) {
+            if(i > 1) {
                 labelStepItem[i-1].remove();
                 inputStepItem[i-1].remove();
                 textareaStepItem[i-1].remove();
