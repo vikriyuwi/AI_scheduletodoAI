@@ -152,6 +152,15 @@
                 background-color: #F8F9FA;
                 border: none;
             }
+
+            .h-100 {
+                height: 100%;
+            }
+
+            .nav-profile img {
+                height: 2rem;
+                width: 2rem;
+            }
         </style>
         {{-- <style>
             @media (prefers-color-scheme: dark) {
@@ -230,7 +239,7 @@
                     <a href="{{url('todo')}}" class="nav-link active" aria-current="page">Manage todo</a>
                   </li>
                   <li class="nav-item me-3">
-                      <a href="{{url('profile')}}" class="nav-link" aria-current="page">Profile</a>
+                      <a href="{{url('/')}}" class="nav-link" aria-current="page">Back to home</a>
                   </li>
                 </ul>
                 @guest
@@ -238,9 +247,18 @@
                     login <i class="fa-solid fa-arrow-right"></i>
                 </a>
                 @else
-                <a href="{{ url('auth/logout') }}" class="link link-primary fw-bold">
-                  logout <i class="fa-solid fa-arrow-right"></i>
-                </a>
+                <div class="nav-item dropdown">
+                    <a class="nav-link btn btn-secondary rounded-pill fw-bold text-white d-flex" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <div class="nav-profile p-1">
+                            <img src="{{ Auth::user()->user_picture }}" alt="" class="rounded-circle">
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="{{ url('profile') }}">Profile</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{{ url('auth/logout') }}">Logout</a></li>
+                    </ul>
+                </div>
                 @endauth
               </div>
             </div>
