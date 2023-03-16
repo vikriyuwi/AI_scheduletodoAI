@@ -36,10 +36,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-2">
+                        {{-- <div class="mb-2">
                             <label for="todoSteps">Todo steps:</label>
                             <input type="number" name="todoSteps" id="initTodoSteps" class="form-control" required>
-                        </div>
+                        </div> --}}
                         <div class="mb-2">
                             <label class="mt-2" for="initTodoLink">Related Link (optional):</label>
                             <input class="form-control" type="text" id="initTodoLink" name="todoLink">
@@ -51,12 +51,20 @@
                     <form action="{{ url('/todo') }}" method="POST" onsubmit="showLoadingScreen()">
                         @method('POST')
                         @csrf
-                        <input type="hidden" id="todoName" name="todoName">
-                        <input type="hidden" name="todoNote" id="todoNote">
-                        <input type="hidden" id="todoDeadline" name="todoDeadline">
-                        <input type="hidden" class="form-range" id="todoDifficulty" name="todoDifficulty"> 
-                        <input type="hidden" id="todoSteps" name="todoSteps">
-                        <input type="hidden" id="todoLink" name="todoLink">  
+                        <div id="todo-data-form">
+                            <input type="hidden" id="todoName" name="todoName">
+                            <input type="hidden" name="todoNote" id="todoNote">
+                            <input type="hidden" id="todoDeadline" name="todoDeadline">
+                            <input type="hidden" class="form-range" id="todoDifficulty" name="todoDifficulty"> 
+                            <input type="hidden" id="todoSteps" name="todoSteps">
+                            <input type="hidden" id="todoLink" name="todoLink"> 
+                        </div>
+                        <div id="step-data-form">
+
+                        </div>
+                        <div id="button-form">
+
+                        </div>
                     </form>
                 </div>
             </div>
@@ -468,11 +476,13 @@
             $('#modalBodyTodoAdd').html('Valid value for todo difficulty is greater than 0.');
             modal.show();
             return;
-        } else if (todoSteps === '' || isNaN(todoSteps) || todoSteps < 1 || todoSteps > 10) {
-            $('#modalBodyTodoAdd').html('Valid value for todo step is 1 to 10');
-            modal.show();
-            return;
-        } else if (todoLink !== '' &&  !isValidUrl(todoLink)) {
+        }
+        // else if (todoSteps === '' || isNaN(todoSteps) || todoSteps < 1 || todoSteps > 10) {
+        //     $('#modalBodyTodoAdd').html('Valid value for todo step is 1 to 10');
+        //     modal.show();
+        //     return;
+        // } 
+        else if (todoLink !== '' &&  !isValidUrl(todoLink)) {
             $('#modalBodyTodoAdd').html('Please fill the todo link with valid url');
             modal.show();
             return;
@@ -492,30 +502,35 @@
         newForm.find('#todoSteps').val(todoSteps);
         newForm.find('#todoLink').val(todoLink);
 
-        for (var i = 1; i <= todoSteps; i++) {
-            var stepName = $('<label>', {
-            class:"mt-4 mb-2 lbl-newForm",
-            for: 'stepName',
-            text: 'Step ' + i + ':'
-            }).add($('<input>', {
-            class: 'form-control',
-            type: 'text',
-            id: 'stepName' + i,
-            name: 'stepName[]',
-            placeholder: 'Step name',
-            required: true
-            }));
-            var stepDesc = $('<textarea>', {
-            class: 'form-control',
-            id: 'stepDesc' + i,
-            name: 'stepDesc[]',
-            placeholder: 'Step description',
-            style: 'height: 100px'
-            });
-            newForm.append(stepName).append(stepDesc);
-        }
-        newForm.append($('<button class="btn btn-success rounded-pill mt-4" type="submit" id="newSubmitButton">Submit</button>'));
-        newForm.append($('<a class="btn btn-secondary rounded-pill ms-2 mt-4" id="backToAddTodo">Back</a>'));
+        let i = 1;
+        var stepDataForm = $('#step-data-form');
+        stepDataForm.append(newInputItem(i));
+
+        var buttonForm = $('#button-form');
+        buttonForm.append($('<a class="btn btn-primary rounded-pill mt-4" type="submit" id="addStepItemButton"><i class="fa-solid fa-plus"></i></a>'));
+        buttonForm.append($('<a class="btn btn-danger rounded-pill ms-2 mt-4" type="submit" id="removeStepItemButton"><i class="fa-solid fa-minus"></i></a><br>'));
+        buttonForm.append($('<button class="btn btn-success rounded-pill mt-4" type="submit" id="newSubmitButton">Submit</button>'));
+        buttonForm.append($('<a class="btn btn-secondary rounded-pill ms-2 mt-4" id="backToAddTodo">Back</a>'));   
+
+        $('#addStepItemButton').click(function(event) {
+            i += 1;
+            stepDataForm.append(newInputItem(i));
+            console.log(i);
+        })
+
+        $('#removeStepItemButton').click(function(event) {
+            let labelStepItem = $('#step-data-form label');
+            let inputStepItem = $('#step-data-form input');
+            let textareaStepItem = $('#step-data-form textarea');
+
+            if(i > 0) {
+                labelStepItem[i-1].remove();
+                inputStepItem[i-1].remove();
+                textareaStepItem[i-1].remove();
+
+                i--;
+            }
+        })
 
         $('#backToAddTodo').click(function(event) {
             $('#todoCard').show();
@@ -530,6 +545,29 @@
         });
         
     });
+
+    function newInputItem(i)
+    {
+        var stepItem = $('<label>', {
+            class:"mt-4 mb-2 lbl-newForm",
+            for: 'stepName',
+            text: 'Step ' + i + ':'
+            }).add($('<input>', {
+            class: 'form-control',
+            type: 'text',
+            id: 'stepName' + i,
+            name: 'stepName[]',
+            placeholder: 'Step name',
+            required: true
+            })).add($('<textarea>', {
+            class: 'form-control',
+            id: 'stepDesc' + i,
+            name: 'stepDesc[]',
+            placeholder: 'Step description',
+            style: 'height: 100px'
+            }));
+        return stepItem;
+    }
 </script>
 <script>
     function preventBack(){window.history.forward();}
