@@ -224,7 +224,7 @@
                       <a href="{{ Request::url() === url('/') ? '#howto' : url('/').'#howto' }}" class="nav-link" aria-current="page">How to</a>
                   </li>
                   <li class="nav-item me-3">
-                      <a href="{{ Request::url() === url('contact-us') ? '#' : url('contact-us') }}" class="nav-link" aria-current="page">Contact Us</a>
+                      <a href="{{ Request::url() === url('contact-us') ? '#' : url('contact-us') }}" class="nav-link" aria-current="page">Give feed back</a>
                   </li>
                 </ul>
                 @guest

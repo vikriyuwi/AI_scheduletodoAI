@@ -26,7 +26,7 @@
                     <div class="card-body p-md-5">
                         <div class="row">
                             <div class="col-12">
-                                <h1 class="fw-bold">Contact Us</h1>
+                                <h1 class="fw-bold">User feed back form</h1>
                             </div>
                         </div>
                         <div class="row">
