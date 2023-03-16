@@ -166,6 +166,15 @@
                 -webkit-animation-delay: -1.0s;
                 animation-delay: -1.0s;
             }
+
+            .h-100 {
+                height: 100%;
+            }
+
+            .nav-profile img {
+                height: 2rem;
+                width: 2rem;
+            }
         </style>
         @yield('additional-style')
     </head>
@@ -208,12 +217,19 @@
                     Login <i class="fa-solid fa-arrow-right"></i>
                 </a>
                 @else
-                <a href="{{ url('todo') }}" class="btn btn-primary rounded-pill fw-bold me-4">
-                  Dashboard
-                </a>
-                <a href="{{ url('auth/logout') }}" class="link link-primary fw-bold">
-                  Logout <i class="fa-solid fa-arrow-right"></i>
-                </a>
+                <div class="nav-item dropdown">
+                    <a class="nav-link btn btn-secondary rounded-pill fw-bold text-white d-flex" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <div class="nav-profile p-1">
+                            <img src="{{ Auth::user()->user_picture }}" alt="" class="rounded-circle">
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="{{ url('todo') }}">My todo</a></li>
+                        <li><a class="dropdown-item" href="{{ url('profile') }}">Profile</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{{ url('auth/logout') }}">Logout</a></li>
+                    </ul>
+                </div>
                 @endauth
               </div>
             </div>
