@@ -209,7 +209,7 @@
                 </a>
                 @else
                 <a href="{{ url('todo') }}" class="btn btn-primary rounded-pill fw-bold me-4">
-                  Manage Todo
+                  Dashboard
                 </a>
                 <a href="{{ url('auth/logout') }}" class="link link-primary fw-bold">
                   Logout <i class="fa-solid fa-arrow-right"></i>
@@ -230,12 +230,14 @@
                     <footer class="py-5">
                     <div class="row">
                         <div class="col-md-3 mb-3">
-                        <ul class="nav flex-column">
-                            <a href="{{ url('/') }}" class="d-flex align-items-center mb-3 link-dark text-decoration-none">
-                            <img src="{{ url('assets/logo/icon.png') }}" alt="Logo" height="70" class="d-inline align-text-top">
-                            </a>
-                            <p class="text-muted">&copy; 2023</p>
-                        </ul>
+                            <ul class="nav flex-column">
+                                <a href="{{ url('/') }}" class="d-flex align-items-center mb-3 link-dark text-decoration-none">
+                                <img src="{{ url('assets/logo/icon.png') }}" alt="Logo" height="70" class="d-inline align-text-top">
+                                </a>
+                                <p class="text-muted">&copy; 2023</p>
+                            </ul>
+                            <a class="btn btn-light rounded-pill me-2" href="https://www.instagram.com/srgepp/"><i class="fa-brands fa-instagram"></i></a>
+                            <a class="btn btn-light rounded-pill me-2" href="https://www.linkedin.com/company/srgepp"><i class="fa-brands fa-linkedin-in"></i></i></a>
                         </div>
                 
                         <div class="col-md-2 mb-3">

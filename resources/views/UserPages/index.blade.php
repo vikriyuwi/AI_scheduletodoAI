@@ -6,16 +6,18 @@
   <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content rounded-5">
           <div class="modal-header">
-              <h1 class="modal-title fs-5 fw-bold px-5 display-1" id="staticBackdropLabel">Announcement</h1>
+              <h1 class="modal-title fs-5 fw-bold display-1" id="staticBackdropLabel">Announcement</h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="modal-body p-5" id="modalBody">
+          <div class="modal-body" id="modalBody">
               <h1 class="fw-bold">Give away time! &#10024</h1>
-              <h4 class="my-4">We are absolutely thrilled to announce that, as a way of saying thanks to our awesome beta testers, we will be giving away some seriously <b class="text-primary">cool prizes</b> as our appreciation for some loyal beta testers (based on who frequently use the website, provide constructive feedback, and lucky draw)!</h4>
+              <p>We are absolutely thrilled to announce that, as a way of our appreciation for some loyal and awesome beta testers, we will be giving away some seriously <b class="text-primary">cool prizes</b> as </p>
+              <h5>based on those who frequently use the website, provide constructive feedback, and lucky draw</h5>
               <p class="text-sm">The winners will be announced on our website and social media platforms at <b>Apr 8, 2023</b>. Good luck! &#127881</p>
+              <br><a href="https://www.instagram.com/p/CpxXQL6hS3Z/?igshid=YmMyMTA2M2Y=" class="link link-primary" target="_blank">see terms & condition</a>
           </div>
           <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Close</button>
           </div>
       </div>
   </div>
@@ -29,7 +31,7 @@
         <div class="mt-3 mt-md-0"></div>
         <img src="{{ url('assets/element/widget1.png') }}" alt="widget1">
       </div>
-      <div class="col-1 d-md-none"></div>
+      <div class="col-1 d-none d-sm-block d-md-none"></div>
       <div class="col-4 col-sm-4 d-md-none">
         <img src="{{ url('assets/element/widget2.png') }}" alt="widget2">
       </div>
@@ -74,7 +76,7 @@
       </div>
       <div class="col-8 d-md-none">
         <div class="row">
-          <div class="col-6"></div>
+          <div class="col-3"></div>
           <div class="col-6">
             <img src="{{ url('assets/element/widget4.png') }}" alt="widget4">
           </div>

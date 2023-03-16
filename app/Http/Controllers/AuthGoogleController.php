@@ -36,7 +36,7 @@ class AuthGoogleController extends Controller
         ]);
 
         Auth::login($user);
-        return redirect()->intended();
+        return redirect('todo');
     }
 
     public function logout()
