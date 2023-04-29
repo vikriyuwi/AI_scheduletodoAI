@@ -25,11 +25,15 @@
             :root {
                 --app-height: -webkit-fill-available;
             }
+            html{
+                scroll-padding: 72px;
+            }
             .navbar-nav .nav-item:not(:last-child) {
                 padding-right: 2rem;
             }
             body{
                 font-family: 'Poppins';
+                
             }
             body a, .nav-link{
                 font-size: 18px;

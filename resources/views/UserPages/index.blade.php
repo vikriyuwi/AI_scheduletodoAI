@@ -2,7 +2,7 @@
 
 @section('main-content')
 {{-- announcement modal --}}
-<div class="modal fade" id="modal-announce" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+{{-- <div class="modal fade" id="modal-announce" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content rounded-5">
           <div class="modal-header">
@@ -21,7 +21,7 @@
           </div>
       </div>
   </div>
-</div>
+</div> --}}
 {{-- header section --}}
 <section id="header" class="w-100 overflow-x-hidden">
   <div class="container-fluid py-md-0" id="header">
@@ -115,6 +115,7 @@
   <div class="container p-4">
     <div class="row my-4 my-md-0">
       <div class="col-12 text-center">
+        <iframe src="https://giphy.com/embed/oiLIk29tymDFNj3xdS" width="480" height="270" frameBorder="0" style="pointer-events: none;"  allowFullScreen></iframe>
         <h2 class="fw-bolder">Let me show you</h2>
         <p>Let's add a little magic to our productivity <br>
           and let AI be our trusty sidekick in managing tasks!</p>
@@ -127,6 +128,7 @@
             1
           </div>
           <div class="col-10">
+            <iframe src="https://giphy.com/embed/PJpIJDGSjA34VZODV2" width="480" height="270" frameBorder="0" style="pointer-events: none;" allowFullScreen></iframe>
             <h5>
               Specify your todo
             </h5>
@@ -142,6 +144,7 @@
             2
           </div>
           <div class="col-10">
+            <iframe src="https://giphy.com/embed/mIu3W1O7xEdvHkw7g3" width="480" height="270" frameBorder="0" style="pointer-events: none;" allowFullScreen></iframe>
             <h5>
               List all step on the task                  
             </h5>
@@ -157,6 +160,7 @@
             3
           </div>
           <div class="col-10">
+            <iframe src="https://giphy.com/embed/BKtqQHcnWwxtQzObBR" width="480" height="270" frameBorder="0" style="pointer-events: none;" allowFullScreen></iframe>
             <h5>
               Let AI works                  
             </h5>
@@ -172,6 +176,7 @@
             4
           </div>
           <div class="col-10">
+            <iframe src="https://giphy.com/embed/ZhdSAKqSirFG45jTfH" width="480" height="270" frameBorder="0" style="pointer-events: none;" allowFullScreen></iframe>
             <h5>
               Monitoring                  
             </h5>
